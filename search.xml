@@ -8,7 +8,7 @@
       <link href="/2023/01/13/%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/"/>
       <url>/2023/01/13/%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</url>
       
-        <content type="html"><![CDATA[<h1 id="这是一篇-markdown-amp-vscode-测试文章"><a href="#这是一篇-markdown-amp-vscode-测试文章" class="headerlink" title="这是一篇 markdown &amp; vscode 测试文章"></a>这是一篇 markdown &amp; vscode 测试文章</h1><h1 id="这是一个一级标题"><a href="#这是一个一级标题" class="headerlink" title="这是一个一级标题"></a>这是一个一级标题</h1><h2 id="这是一个二级标题"><a href="#这是一个二级标题" class="headerlink" title="这是一个二级标题"></a>这是一个二级标题</h2><p>这是正文<br>vscode中直接换行，实际不会换行，但不同的渲染器可能处理结果不同，有的会换行</p><p>想要在段落内换行可以在一行末尾打两个空格实现，比如这一行<br>这是和上一行同一段落但手动换行的第二行</p><p>vscode中连用两次换行可以分割段落（即两端中间空一行即表示分段落）</p><p>加粗方法：左右各加两个星号：<strong>加粗了</strong> ，也可以用快捷键 <strong>Ctrl + b</strong> 控制加粗</p><p>斜体方法：左右各加一个星号：<em>变斜了</em>，也可以用快捷键 <strong>Ctrl + i</strong> 控制斜体</p><p>注意：星号前最好加个空格，否则可能无法识别格式</p><ol><li>数字+点+空格</li><li>可以自动生成后续行的数字和点<ol><li>Tab生成二级列表<ol><li>再Tab生成三级列表（和python通过缩进区分层级类似）</li></ol></li></ol></li><li>这是一级列表的第三行，即使vscode中自己序号的数字写错了，序号也会被自动修正（实际上我写的是 “4. “）</li></ol><p>想要生成两个列表，中间要加入文字切开</p><ol><li>这是另一个列表</li></ol><p>让我们试试加入一些图片：</p><p>可以直接复制图片，然后用 <strong>Ctrl + Alt + v</strong> 来粘贴，比如这只随手抓的にじか：</p><p><img src="/./images/nijika.png"></p><p>除此之外，也可以将图片存进文章的文件夹然后用图片的格式：**! + [] + (图片文件名)** 来插入图片</p><h3 id="这是一个三级标题"><a href="#这是一个三级标题" class="headerlink" title="这是一个三级标题"></a>这是一个三级标题</h3><p>可以用两个$来包括公式，这个格式可以连按两次 Ctrl + m 呼出</p><p>$$<br>\lim_{x \to \infin}\frac{sin(x)}{x}&#x3D;1<br>$$</p><p>也可以在一段文字中用 Ctrl + m 插入 $\lim_{x \to \infin}\frac{sin(x)}{x}&#x3D;1$ 公式</p><h2 id="试试使用表格"><a href="#试试使用表格" class="headerlink" title="试试使用表格"></a>试试使用表格</h2><p>通过符号（这个符号：|）可以建立表格：</p><p>表格第一行是表头，第二行用杠（这个符号：- ）来生成表格，杠左右加冒号（英文格式的）用来控制这一列对齐位置，<strong>第二行要有杠才能生成表格</strong></p><p>例：</p><table><thead><tr><th align="right">A</th><th align="center">B</th><th align="left">C</th><th>D</th></tr></thead><tbody><tr><td align="right">我是右对其的内容:</td><td align="center">:我是居中的内容:</td><td align="left">:我是左对齐的内容</td><td>我是默认的内容</td></tr><tr><td align="right">A内容</td><td align="center">B内容</td><td align="left">C内容</td><td>D内容</td></tr></tbody></table><p>表头默认加粗居中，内容默认左对齐</p><p>使用 Alt + Shift + f 可以自动美化vscode中的表格的文本</p><h2 id="尝试贴个链接："><a href="#尝试贴个链接：" class="headerlink" title="尝试贴个链接："></a>尝试贴个链接：</h2><p>可以直接复制一个链接，然后选中你想要的文字，用 Ctrl + v 粘贴，链接就会与所选中文字绑定：</p><p>这是我的博客的<a href="https://momoyeyu.github.io/">链接</a></p><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>vscode也可以写代码的：</p><p>方法：上下各用三个小撇号 <strong>（这个符号：&#96; ）</strong> 包围代码块，还可以在上层的小撇号后标明语言类型，可以使代码高亮</p><p>我们随便拿两行javascript来试试:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;Javascript syntax highlighting&quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(s);</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="这是一篇-markdown-amp-vscode-测试文章"><a href="#这是一篇-markdown-amp-vscode-测试文章" class="headerlink" title="这是一篇 markdown &amp; vscode 测试文章"></a>这是一篇 markdown &amp; vscode 测试文章</h1><h1 id="这是一个一级标题"><a href="#这是一个一级标题" class="headerlink" title="这是一个一级标题"></a>这是一个一级标题</h1><h2 id="这是一个二级标题"><a href="#这是一个二级标题" class="headerlink" title="这是一个二级标题"></a>这是一个二级标题</h2><p>这是正文<br>vscode中直接换行，实际不会换行，但不同的渲染器可能处理结果不同，有的会换行</p><p>想要在段落内换行可以在一行末尾打两个空格实现，比如这一行<br>这是和上一行同一段落但手动换行的第二行</p><p>vscode中连用两次换行可以分割段落（即两端中间空一行即表示分段落）</p><p>加粗方法：左右各加两个星号：<strong>加粗了</strong> ，也可以用快捷键 <strong>Ctrl + b</strong> 控制加粗</p><p>斜体方法：左右各加一个星号：<em>变斜了</em>，也可以用快捷键 <strong>Ctrl + i</strong> 控制斜体</p><p>注意：星号前最好加个空格，否则可能无法识别格式</p><ol><li>数字+点+空格</li><li>可以自动生成后续行的数字和点<ol><li>Tab生成二级列表<ol><li>再Tab生成三级列表（和python通过缩进区分层级类似）</li></ol></li></ol></li><li>这是一级列表的第三行，即使vscode中自己序号的数字写错了，序号也会被自动修正（实际上我写的是 “4. “）</li></ol><p>想要生成两个列表，中间要加入文字切开</p><ol><li>这是另一个列表</li></ol><p>让我们试试加入一些图片：</p><p>可以直接复制图片，然后用 <strong>Ctrl + Alt + v</strong> 来粘贴，比如这只随手抓的にじか：</p><p><img src="/./images/nijika.png"></p><p>除此之外，也可以将图片存进文章的文件夹然后用图片的格式：**! + [] + (图片文件名)** 来插入图片</p><h3 id="这是一个三级标题"><a href="#这是一个三级标题" class="headerlink" title="这是一个三级标题"></a>这是一个三级标题</h3><p>可以用两个$来包括公式，这个格式可以连按两次 Ctrl + m 呼出</p><p>$$<br>\lim_{x \to \infin}\frac{sin(x)}{x}&#x3D;1<br>$$</p><p>也可以在一段文字中用 Ctrl + m 插入 $\lim_{x \to \infin}\frac{sin(x)}{x}&#x3D;1$ 公式</p><h2 id="试试使用表格"><a href="#试试使用表格" class="headerlink" title="试试使用表格"></a>试试使用表格</h2><p>通过符号（这个符号：|）可以建立表格：</p><p>表格第一行是表头，第二行用杠（这个符号：- ）来生成表格，杠左右加冒号（英文格式的）用来控制这一列对齐位置，<strong>第二行要有杠才能生成表格</strong></p><p>例：</p><table><thead><tr><th align="right">A</th><th align="center">B</th><th align="left">C</th><th>D</th></tr></thead><tbody><tr><td align="right">我是右对其的内容:</td><td align="center">:我是居中的内容:</td><td align="left">:我是左对齐的内容</td><td>我是默认的内容</td></tr><tr><td align="right">A内容</td><td align="center">B内容</td><td align="left">C内容</td><td>D内容</td></tr></tbody></table><p>表头默认加粗居中，内容默认左对齐</p><p>使用 Alt + Shift + f 可以自动美化vscode中的表格的文本</p><h2 id="尝试贴个链接："><a href="#尝试贴个链接：" class="headerlink" title="尝试贴个链接："></a>尝试贴个链接：</h2><p>可以直接复制一个链接，然后选中你想要的文字，用 Ctrl + v 粘贴，链接就会与所选中文字绑定：</p><p>这是我的博客的<a href="https://momoyeyu.github.io/">链接</a></p><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>vscode也可以写代码的：</p><p>方法：上下各用三个小撇号 <strong>（这个符号：&#96; ）</strong> 包围代码块，还可以在上层的小撇号后标明语言类型，可以使代码高亮</p><p>我们随便拿两行javascript来试试:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;Javascript syntax highlighting&quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(s);</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
@@ -26,11 +26,11 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -41,29 +41,7 @@
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -74,7 +52,29 @@
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }]]></content>
       
     </entry>
     
@@ -85,7 +85,18 @@
       <link href="/movies/index.html"/>
       <url>/movies/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
