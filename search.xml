@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于系统探索学习法</title>
+      <link href="/2023/03/18/%E4%B8%89%E4%B8%AA%E7%9B%92%E5%AD%90/"/>
+      <url>/2023/03/18/%E4%B8%89%E4%B8%AA%E7%9B%92%E5%AD%90/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="关于系统探索学习法"><a href="#关于系统探索学习法" class="headerlink" title="关于系统探索学习法"></a>关于系统探索学习法</h1><p>课下我尝试使用系统探索学习法来学习使用微信开发者工具，基本按老师的方法探索了image等组件。此外，我还用此方法学习了一些html和python，还用此方法解决了我今天博客部署过程中遇到的问题，接下来我讲详细说说此学习方法给我在各个项目的学习中给我的感受。</p><h2 id="微信开发者工具"><a href="#微信开发者工具" class="headerlink" title="微信开发者工具"></a>微信开发者工具</h2><p>个人觉得微信官网导入一些组件示范性代码很有用，个人学过一点点html做过一些web开发，所以对部分组件理解也觉得比较容易，通过阅读探索这些代码的位置和单词大概的意思就可以大概猜测到如何使用。因此，个人觉得学习如果有基础，学习小程序也许有些部分是不需要教程的，只需要一些示范性的代码供探索就可以了。而且微信开发者工具自带的调试页面很方便用来探索学习，因为可以随时在左侧演示栏看到效果。</p><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>个人闲暇时间学了一点点html，有一个网站很推荐：<a href="https://www.w3school.com.cn/">3wschool.com</a>他的html栏有一栏非常好：你可以使用他们的html编辑器，然后你他会为你提供一些示范代码，你可以自由尝试去写你的html代码，它的编辑器自带一个效果演示的窗口，你可以<strong>随时生成你刚刚写的html</strong>。个人觉得<strong>对于简单的代码</strong>这种学习方法比找书看视频效率高。</p><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><p>python自带一个很强大的学习工具：IDLE。它可以立即执行你输入的一行代码或一个代码块，<strong>你可以自由的尝试，遇到不会的就输入help</strong>。他不需要像c/c++那样使用编译器然后再运行，尝试探索的效率比较高。个人觉得这种工具很适合探索学习。同时，很多控制台应用也可以这么学习，比如个人最近学习linux的时候，遇到问题很多时候在网上找几篇博客不如直接输入—help来得快。探索学习也体现出一种优势：<strong>能锻炼独立解决问题的能力，而不是有问题就Google，搜不到就放弃的cv程序员。</strong></p><h2 id="博客部署"><a href="#博客部署" class="headerlink" title="博客部署"></a>博客部署</h2><p>寒假个人制作了一个博客网页<a href="momoyeyu.github.io">[链接]</a>，开学之后经久没有更新，结果今天发现博客目录下的hexo和git指令都显示command not found，node和npm路径也都不识别，导致我没法把文章更新到网站上了。</p><p>我推测是我之前误删了系统Path导致很多指令无法识别，当时导致我ipconfig等系统指令都用不了，后来自己在c盘找到之后添加path就结局了。</p><p>所以这次我认为问题可能差不多，我就去自己设置了一下Path，结果还是不行。于是我尝试谷歌，依然是几篇博客都没有解决问题。但我想说的是不是别人的博客不行，而是<strong>每个人配置的路径等细节不一样，博客的东西可以参考但没法照搬</strong>。后来我是自己想到用node的setup包进行repair来自动修复了指令找不到的问题（一般的安装包都有类似repair的功能，这是之前装python的时候遇到过，这次就<strong>推测</strong>）。</p><p>命令都找回来了，可是博客部署还是失败，这次也没搜博客了，就看报错内容，大概意思是文件夹不是git文件夹，我就知道是git出问题。<strong>有之必然，无之必不然</strong>指的就是git，然后再部署文件夹git init就挂上了，解决问题，然后我就把上次同行计划的文章作为测试部署在博客上了，可以去我的博客看到那篇文章。</p><p>这个案例也让我发现探索学习法的几个优势：<strong>独立解决问题的能力，推测问题举一反三的能力。</strong></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于系统探索学习发，我列出以下几个特点：  </p><ul><li><strong>效率不高</strong></li><li>锻炼<strong>独立解决问题</strong>的能力</li><li>锻炼<strong>举一反三</strong>的能力</li><li>需要<strong>结合其他方法</strong>才能体现优势</li><li>容易形成<strong>经验</strong></li><li>探索有前提，而且有上限</li></ul><p>系统探索学习法最大的优点个人觉得是可以让人在探索过程中<strong>获得经验</strong>，与学习获得知识记忆不同，这些经验是<strong>更长久而且更靠谱的</strong>，然后这些经验还可以化作你去<strong>对相似的东西举一反三进行推测的能力</strong>，而且有了这些经验，你将<strong>不依赖于向他人求答案</strong>，而是<strong>倾向于用自己的经验来解决问题</strong>。</p><p>系统探索学习法的不足就是开始很慢，而且个人觉得在很多项目的学习<strong>最开始我们是不应该使用系统探索学习法</strong>的。怎么理解这个<strong>最开始</strong>呢？就好比让一个没有写过任何代码的人去看微信官方给的示例代码，他也只会望而生畏；再通俗夸张点，你让个不认识几个英文单词的人去看代码，他是没法通过代码的单词来推测的！当然这是为了突出<strong>最开始</strong>这个概念才这么说。最开始的时候，个人觉得<strong>还是需要通过学习现成资料来获得一定的知识，再去探索</strong>，否则这种探索只是在瞎子摸黑，即使太阳再亮也没用。你也可以这么理解：一个系统有一些部分是他最基础或相对很基础的组成部分，想要探索这个系统，<strong>至少要先对这个系统比较基础的部分都有认识</strong>，然后才去探索这个系统。再比如学习泛型编程的语言，<strong>我们可以推测</strong>一个函数可以在其他类型的数据结构也可以使用，<strong>但你必须要先知道这个函数本身</strong>是干什么的。而且很多时候，我们在能很轻易地找到资料的情况下，探索的意义确实不大，不如在知道正确的后多应用几次。最后还有一个缺点，就是探索是有上限的，简单的探索我们可以推测，<strong>复杂的我们再去推测无异于去猜密码，容易让人挫败。</strong></p><p>总而言之，这种方法可取，但许多时候要结合其他方法，比如看书看博客看视频等。对于很<strong>容易搜索到答案的东西</strong>，我们去探索学习的<strong>效率并不高</strong>，但对于<strong>难搜索找到清晰答案的</strong>，系统探索学习法不失为一个<strong>好方法</strong>。</p><p>以上就是我对系统探索学习法的认识，谢谢。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Misc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>创新创业思考课题</title>
       <link href="/2023/03/18/%E5%90%8C%E8%A1%8C%E8%AE%A1%E5%88%92-%E4%B8%8E%E5%A4%A7%E5%B8%88%E5%90%8C%E8%A1%8C/"/>
       <url>/2023/03/18/%E5%90%8C%E8%A1%8C%E8%AE%A1%E5%88%92-%E4%B8%8E%E5%A4%A7%E5%B8%88%E5%90%8C%E8%A1%8C/</url>
@@ -207,11 +226,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -229,9 +248,20 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -240,11 +270,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/runtime.js"/>
-      <url>/js/runtime.js</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>setInterval(() => {  let create_time = Math.round(new Date('2023-01-10 00:00:00').getTime() / 1000); //在此行修改建站时间  let timestamp = Math.round((new Date().getTime()) / 1000);  let second = timestamp - create_time;  let time = new Array(0, 0, 0, 0, 0);  var nol = function(h){    return h>9?h:'0'+h;  }  if (second >= 365 * 24 * 3600) {    time[0] = parseInt(second / (365 * 24 * 3600));    second %= 365 * 24 * 3600;  }  if (second >= 24 * 3600) {    time[1] = parseInt(second / (24 * 3600));    second %= 24 * 3600;  }  if (second >= 3600) {    time[2] = nol(parseInt(second / 3600));    second %= 3600;  }  if (second >= 60) {    time[3] = nol(parseInt(second / 60));    second %= 60;  }  if (second > 0) {    time[4] = nol(second);  }  if ((Number(time[2])<22) && (number(time[2])>7)){    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-营业中-6adea8?style=social&logo=cakephp" title="距离百年老店也就差不到一百年~"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  else{    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-打烊了-6adea8?style=social&logo=coffeescript" title="这个点了应该去睡觉啦，熬夜对身体不好哦"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  document.getElementById("workboard").innerHTML = currentTimeHtml;}, 1000);</22)>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -273,11 +303,11 @@
     
     
     <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title></title>
+      <link href="/js/runtime.js"/>
+      <url>/js/runtime.js</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>setInterval(() => {  let create_time = Math.round(new Date('2023-01-10 00:00:00').getTime() / 1000); //在此行修改建站时间  let timestamp = Math.round((new Date().getTime()) / 1000);  let second = timestamp - create_time;  let time = new Array(0, 0, 0, 0, 0);  var nol = function(h){    return h>9?h:'0'+h;  }  if (second >= 365 * 24 * 3600) {    time[0] = parseInt(second / (365 * 24 * 3600));    second %= 365 * 24 * 3600;  }  if (second >= 24 * 3600) {    time[1] = parseInt(second / (24 * 3600));    second %= 24 * 3600;  }  if (second >= 3600) {    time[2] = nol(parseInt(second / 3600));    second %= 3600;  }  if (second >= 60) {    time[3] = nol(parseInt(second / 60));    second %= 60;  }  if (second > 0) {    time[4] = nol(second);  }  if ((Number(time[2])<22) && (number(time[2])>7)){    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-营业中-6adea8?style=social&logo=cakephp" title="距离百年老店也就差不到一百年~"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  else{    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-打烊了-6adea8?style=social&logo=coffeescript" title="这个点了应该去睡觉啦，熬夜对身体不好哦"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  document.getElementById("workboard").innerHTML = currentTimeHtml;}, 1000);</22)>]]></content>
       
     </entry>
     
@@ -287,17 +317,6 @@
       <title>音乐</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
