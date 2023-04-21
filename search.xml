@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Smart pointer</title>
+      <link href="/2023/04/21/C%20or%20C++/smart_ptr/"/>
+      <url>/2023/04/21/C%20or%20C++/smart_ptr/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Smart-pointer"><a href="#Smart-pointer" class="headerlink" title="Smart pointer"></a>Smart pointer</h1><ul><li>Hey guys! It has been several days since I last wrote a blog like this. I have been busy with mid-term exams for days. But now I’m back!</li><li>This is the first time I have written a blog entirely in English. Some statements or terminology may sound strange or be incorrect, but  I am excited to start and improve my skills in English blogging. There are several reasons for this, but the main ones are as follows:<ol><li>Practicing English.</li><li>Becoming familiar with terminology in the computer  science field.</li><li>Having a better ability to learn English materials related to computer science.</li></ol></li></ul><ul><li>I would like to give a special thanks to <a href="https://www.youtube.com/user/TheChernoProject/">@The Cherno</a> for teaching me C++ through his C++ series on YouTube. Please subscribe to his channel if possible!</li></ul><h2 id="Brief-Introduction"><a href="#Brief-Introduction" class="headerlink" title="Brief Introduction"></a>Brief Introduction</h2><ul><li>Smart pointers can help you manage your memory automatically, preventing the issue of forgetting to call “delete” to free memory allocated by “new”.</li></ul><h2 id="Premise"><a href="#Premise" class="headerlink" title="Premise"></a>Premise</h2><ul><li>We have some libs included and the class “Entity”.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;memory&gt;</span> <span class="comment">//include smart pointer</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Entity</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Created Entity!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">Entity</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Destroyed Entity!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul><h2 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h2><ul><li>We have an simple demo of <code>unique_ptr</code> here. Notice that the curly braces just for marking the scope.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">... <span class="comment">// We omit the previous code</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;<span class="comment">// explicit &quot;must use the construction function&quot;</span></span><br><span class="line">        </span><br><span class="line">        std::unique_ptr&lt;Entity&gt; entity = std::<span class="built_in">make_unique</span>&lt;Entity&gt;();</span><br><span class="line"></span><br><span class="line">        entity-&gt;<span class="built_in">Print</span>();</span><br><span class="line">    &#125;<span class="comment">// the curly braces mark the scope</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//end of main</span></span><br><span class="line">    std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>The <code>unique_ptr</code> <strong>cannot be copied</strong>! And that is the meaning of its name. This means that you cannot use unique_ptr like this:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span></span><br><span class="line">&#123;</span><br><span class="line">    ...<span class="comment">//omit</span></span><br><span class="line">&#125;;</span><br><span class="line">...<span class="comment">//omit</span></span><br><span class="line">    std::unique_ptr&lt;Example&gt; uniq_ptr = std::<span class="built_in">make_unique</span>&lt;Example&gt;();</span><br><span class="line">    <span class="type">void</span>* ptr</span><br><span class="line">    ptr = uniq_ptr <span class="comment">// invalid, you can&#x27;t copy uniq_ptr</span></span><br></pre></td></tr></table></figure></li><li>If you try to do so, you will find that the compiler throws an error. You can find the reason in the place where <code>unique_ptr</code> is defined or just check it in Cherno’s C++ series.</li><li>But hey, if you’re feeling rebellious and want to break the rules, there are some tricky ways to move a unique_ptr around using move constructors and assignment operators. Just don’t blame me when your program crashes and burns faster than a flaming marshmallow!</li></ul><h2 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h2><ul><li>The <code>shared_ptr</code> is implemented using a <strong>counter</strong>.</li><li>When another <code>shared_ptr</code> shares an existing pointer, the counter is incremented.</li><li>When a shared_ptr is deleted, the counter is decremented.</li><li>The memory will only be freed when the counter reaches zero.</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::shared_ptr&lt;Entity&gt; entity;</span><br><span class="line">    <span class="comment">// we created entity here, but didn&#x27;t initialize</span></span><br><span class="line">    &#123;</span><br><span class="line">        std::shared_ptr&lt;Entity&gt; shared_entity = std::<span class="built_in">make_shared</span>&lt;Entity&gt;();</span><br><span class="line"></span><br><span class="line">        entity = shared_entity; <span class="comment">// we didn&#x27;t fulfill operator useability here</span></span><br><span class="line"></span><br><span class="line">        entity-&gt;<span class="built_in">Print</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ptr &quot;shared_entity&quot; is unavaible here, but it&#x27;s memory isn&#x27;t free</span></span><br><span class="line">    <span class="comment">// because ptr &quot;entity&quot; hold it&#x27;s memory</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h2><ul><li><code>weak_ptr</code> can be considered a special kind of <code>shared_ptr</code>. It can refer to a <code>shared_ptr</code>, but doesn’t affect the reference count.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::weak_ptr&lt;Entity&gt; entity;</span><br><span class="line">    <span class="comment">// we created entity here, but didn&#x27;t initialize</span></span><br><span class="line">    &#123;</span><br><span class="line">        std::shared_ptr&lt;Entity&gt; shared_entity = std::<span class="built_in">make_shared</span>&lt;Entity&gt;();</span><br><span class="line"></span><br><span class="line">        entity = shared_entity;</span><br><span class="line"></span><br><span class="line">        shared_entity-&gt;<span class="built_in">Print</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// shared_entity died here because the counter turn to 0.</span></span><br><span class="line">    <span class="comment">//but we can ask weak_ptr whether it&#x27;s memory was free</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>After all <code>shared_ptr</code> instances have been destroyed, a <code>weak_ptr</code> cannot hold the memory. However, we can use a <code>weak_ptr</code> to check whether its associated memory has been freed. It is like asking it, “Hey, is your memory freed?”.</li></ul><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul><li>In summary, smart pointers in C++ are used to manage memory allocation and deallocation automatically to avoid memory leaks and dangling pointers. We mainly covers the most commonly used smart pointers in C++. They are implemented as templates and have three types: <code>unique_ptr</code>, <code>shared_ptr</code>, and <code>weak_ptr</code>.</li></ul><ul><li><code>unique_ptr</code> is used to manage exclusive ownership of an object, meaning that it cannot be copied and can only be moved. It is useful when <strong>a single object</strong> is managed by one pointer, and the object should be automatically destroyed when the pointer is out of scope.</li></ul><ul><li><code>shared_ptr</code> is used to manage shared ownership of an object, meaning that multiple pointers can refer to the same object. It uses <strong>reference counting</strong> to keep track of how many pointers are referring to the object, and the object is automatically destroyed when the reference count goes to zero.</li></ul><ul><li><code>weak_ptr</code> is used in conjunction with shared_ptr to <strong>avoid cyclic dependencies</strong>, where objects refer to each other in a way that cannot be broken. It provides a non-owning reference to an object managed by shared_ptr, and can be used to check whether the object has been destroyed. (Actually I am not familiar with weak_ptr, so I just search some material through Internet. May be we will talk about it later.)</li></ul><ul><li>Overall, smart pointers are a powerful feature in C++ that allow for more reliable memory management, and can help prevent common programming errors related to memory allocation and deallocation.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>牛顿运动定律</title>
       <link href="/2023/04/15/Physic/Chapter_2/"/>
       <url>/2023/04/15/Physic/Chapter_2/</url>
@@ -276,11 +301,11 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }]]></content>
       
     </entry>
     
@@ -298,55 +323,22 @@
     
     
     <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/css/runtime.css"/>
       <url>/css/runtime.css</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>/*电子钟字体*/@font-face {  font-family: 'UnidreamLED';  src: url("https://cdn.jsdelivr.net/npm/akilar-candyassets/fonts/UnidreamLED.ttf");  font-display: swap;}div#runtime {  width: 180px;  margin: auto;  color: #fff;  padding-inline: 5px;  border-radius: 10px;  background-color: rgba(0,0,0,0.7);  font-family: 'UnidreamLED';}[data-theme="dark"] div#runtime {  color: #28b4c8;  box-shadow: 0 0 5px rgba(28,69,218,0.71);  animation: flashlight 1s linear infinite alternate;}/*悬停显示徽标提示语*/a.github-badge:hover:before {  position: fixed;  width: fit-content;  margin: auto;  left: 0;  right: 0;  top: 10%;  border-radius: 10px;  text-align: center;  z-index: 100;  content: attr(data-title);  font-size: 20px;  color: #fff;  padding: 10px;  background-color: var(--text-bg-hover);}[data-theme=dark] a.github-badge:hover:before {  background-color: rgba(18,18,18,0.8);}@-moz-keyframes flashlight {  from {    box-shadow: 0 0 5px #1478d2;  }  to {    box-shadow: 0 0 2px #1478d2;  }}@-webkit-keyframes flashlight {  from {    box-shadow: 0 0 5px #1478d2;  }  to {    box-shadow: 0 0 2px #1478d2;  }}@-o-keyframes flashlight {  from {    box-shadow: 0 0 5px #1478d2;  }  to {    box-shadow: 0 0 2px #1478d2;  }}@keyframes flashlight {  from {    box-shadow: 0 0 5px #1478d2;  }  to {    box-shadow: 0 0 2px #1478d2;  }}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
@@ -369,6 +361,39 @@
       <url>/js/runtime.js</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>setInterval(() => {  let create_time = Math.round(new Date('2023-01-10 00:00:00').getTime() / 1000); //在此行修改建站时间  let timestamp = Math.round((new Date().getTime()) / 1000);  let second = timestamp - create_time;  let time = new Array(0, 0, 0, 0, 0);  var nol = function(h){    return h>9?h:'0'+h;  }  if (second >= 365 * 24 * 3600) {    time[0] = parseInt(second / (365 * 24 * 3600));    second %= 365 * 24 * 3600;  }  if (second >= 24 * 3600) {    time[1] = parseInt(second / (24 * 3600));    second %= 24 * 3600;  }  if (second >= 3600) {    time[2] = nol(parseInt(second / 3600));    second %= 3600;  }  if (second >= 60) {    time[3] = nol(parseInt(second / 60));    second %= 60;  }  if (second > 0) {    time[4] = nol(second);  }  if ((Number(time[2])<22) && (number(time[2])>7)){    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-营业中-6adea8?style=social&logo=cakephp" title="距离百年老店也就差不到一百年~"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  else{    currentTimeHtml ="<img class="boardsign" src="https://img.shields.io/badge/糖果屋-打烊了-6adea8?style=social&logo=coffeescript" title="这个点了应该去睡觉啦，熬夜对身体不好哦"><div id="runtime">" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';  }  document.getElementById("workboard").innerHTML = currentTimeHtml;}, 1000);</22)>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
     </entry>
     
