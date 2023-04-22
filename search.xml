@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Vector</title>
+      <link href="/2023/04/22/C%20or%20C++/vector/"/>
+      <url>/2023/04/22/C%20or%20C++/vector/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><ul><li>Hey folks! Today we are going to dive into the world of C++ vectors. In this blog, we will cover the basics of using vectors and explore the fundamental syntax of vectors. We will also touch upon some related techniques that you wonld not want to miss.</li></ul><ul><li>I would like to give a special thanks to <a href="https://www.youtube.com/user/TheChernoProject/">@The Cherno</a> for teaching me C++ through his C++ series on YouTube. Please subscribe to his channel if possible!</li></ul><h2 id="Brief-intro"><a href="#Brief-intro" class="headerlink" title="Brief intro"></a>Brief intro</h2><ul><li>Vector is a powerful datatype in the C++ standard library that functions similarly to an array list. Although its name may suggest a relation to mathematical vectors, it is actually quite different. One of its notable features is the ability to dynamically change its size and query its current size. Let’s dive into the details.</li></ul><h2 id="Simple-demo"><a href="#Simple-demo" class="headerlink" title="Simple demo"></a>Simple demo</h2><ul><li>Here is a simple demo to showcase the basic usage of vectors in C++. Most of the important points are explained in the comments:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span> <span class="comment">// include the vector library to use vectors</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Define a struct called Vertex with three float values</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Vertex</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">float</span> x, y, z;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Vertex</span>(<span class="type">float</span> x, <span class="type">float</span> y, <span class="type">float</span> z)</span><br><span class="line">        : <span class="built_in">x</span>(x), <span class="built_in">y</span>(y), <span class="built_in">z</span>(z) <span class="comment">// initialization list</span></span><br><span class="line">    &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Define an overloaded operator&lt;&lt; function to allow printing of Vertex objects to std::cout</span></span><br><span class="line">std::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream&amp; stream, <span class="type">const</span> Vertex vertex)</span><br><span class="line">&#123;</span><br><span class="line">stream &lt;&lt; <span class="string">&quot;(&quot;</span> &lt;&lt; vertex.x &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; vertex.y &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; vertex.z &lt;&lt; <span class="string">&quot;)&quot;</span>;</span><br><span class="line"><span class="keyword">return</span> stream;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Main function</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">std::vector&lt;Vertex&gt; vertices; <span class="comment">// create a vector of Vertex objects called vertices</span></span><br><span class="line"></span><br><span class="line">vertices.<span class="built_in">push_back</span>(&#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;); <span class="comment">// add a new Vertex object with x=1, y=2, and z=3 to the end of the vector</span></span><br><span class="line">vertices.<span class="built_in">push_back</span>(&#123; <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> &#125;); <span class="comment">// add another Vertex object with x=4, y=5, and z=6 to the end of the vector</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Loop through each element in the vector and print its value using the overloaded &lt;&lt; operator</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; vertices.<span class="built_in">size</span>(); i++)</span><br><span class="line">std::cout &lt;&lt; vertices[i] &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">vertices.<span class="built_in">erase</span>(vertices.<span class="built_in">begin</span>() + <span class="number">1</span>); <span class="comment">// remove the second element (index 1) from the vector</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Loop through each element in the vector using a range-based for loop and print its value using the overloaded &lt;&lt; operator</span></span><br><span class="line"><span class="keyword">for</span> (Vertex&amp; v : vertices)</span><br><span class="line">std::cout &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">std::cin.<span class="built_in">get</span>(); <span class="comment">// wait for user input before closing the program</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>Here are some important things to keep in mind when using vectors in C++:<ol><li>Make sure to <strong>include</strong> the vector library in your code so that you can use the vector class.</li><li>Add data to the end of the vector using the push_back() method.</li><li>Remove data using the erase() method with the index of the element you want to remove.</li><li>You can obtain the initial location of the vector by calling the begin() method.</li><li>Unlike Java, where a class is required to be the vector’s data type, in C++, we can use basic types such as int as the vector’s data type</li></ol></li></ul><ul><li>In this demo, we’ve used some interesting techniques that are worth noting:<ol><li>Overloading the &lt;&lt; operator to customize output for the vector. (We will talk about overloading operator in another blog)</li><li>Copying data can be slow and inefficient, so using references (&amp;) can help avoid this issue.</li><li>We are using a <strong>range-based</strong> for loop here, which Python programmers might find familiar.</li><li>The initialization list for Vertex class is defined within the class itself. (Further details about initialization lists may be discussed in a future blog post)</li></ol></li></ul><h2 id="Optimization-of-vector"><a href="#Optimization-of-vector" class="headerlink" title="Optimization of vector"></a>Optimization of vector</h2><ul><li>The above simple demo just show basic usage of vector, which can be slow and inefficient without any optimization.</li></ul><ul><li>Normal vectors have various limitations, but for today, we will focus on addressing the issue of copying to improve their performance.</li></ul><h3 id="Avoid-copy"><a href="#Avoid-copy" class="headerlink" title="Avoid copy"></a>Avoid copy</h3><ul><li>The best way to optimize is knowing the environment we are working with. Thus, we need to identify where the vector is being copied. Here is an example code:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Vertex</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">float</span> x, y, z;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Vertex</span>(<span class="type">float</span> x, <span class="type">float</span> y, <span class="type">float</span> z)</span><br><span class="line">: <span class="built_in">x</span>(x), <span class="built_in">y</span>(y), <span class="built_in">z</span>(z)</span><br><span class="line">&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Vertex</span>(<span class="type">const</span> Vertex&amp; vertex)</span><br><span class="line">: <span class="built_in">x</span>(vertex.x), <span class="built_in">y</span>(vertex.y), <span class="built_in">z</span>(vertex.z)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// highlight that our vector is copied</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;Copied!&quot;</span> &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">std::vector&lt;Vertex&gt; vertices;</span><br><span class="line">vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));<span class="comment">//line 23</span></span><br><span class="line">vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line">    vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line"></span><br><span class="line">std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li>Running the above code, we get six “Copied” in the console.</li></ul><h4 id="Avoid-copy-result-from-reallocation"><a href="#Avoid-copy-result-from-reallocation" class="headerlink" title="Avoid copy result from reallocation"></a>Avoid copy result from reallocation</h4><ul><li>Once a vector’s capacity is exceeded, it needs to reallocate new memory which involves copying data to a new location, deleting old data, and adding new data. This process can be slow and inefficient, and it is where we begin the optimization process.</li></ul><ul><li>Every time the <code>push_back()</code> method is called, the vertices vector is reallocated due to its size not being sufficient. To optimize this, we can call the <code>reserve()</code> method to specify that the size of the vector should be 3, thereby avoiding unnecessary reallocations.</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   ...<span class="comment">// omit</span></span><br><span class="line">   std::vector&lt;Vertex&gt; vertices;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// state that the size should be 3</span></span><br><span class="line">   vertices.<span class="built_in">reserve</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));</span><br><span class="line">vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line">   vertices.<span class="built_in">push_back</span>(<span class="built_in">Vertex</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line">...</span><br></pre></td></tr></table></figure><ul><li>In the given code, calling <code>reserve(3)</code> before adding the elements will optimize the performance by avoiding three unnecessary memory reallocations and copying.</li><li>After using the <code>reserve()</code> method, we will only get 3 “Copied”.</li></ul><h4 id="Avoid-copy-caused-by-constructing-function"><a href="#Avoid-copy-caused-by-constructing-function" class="headerlink" title="Avoid copy caused by constructing function"></a>Avoid copy caused by constructing function</h4><ul><li>In the example code, lines 29-30 create a Vertex in the main scope using a constructor, and then copy it to the vector. This is inefficient and can be improved by using the <code>emplace_back()</code> method instead.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   vertices.<span class="built_in">emplace_back</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">vertices.<span class="built_in">emplace_back</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">   vertices.<span class="built_in">emplace_back</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure></li><li>The <code>emplace_back()</code> method pass parameters list directly to the constructor, avoiding unnecessary copy.</li></ul><ul><li>After applying the optimization mentioned above, rerun the code and you will observe that there are no “Copied” statements being printed in the console.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C/C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Smart pointer</title>
       <link href="/2023/04/21/C%20or%20C++/smart_ptr/"/>
       <url>/2023/04/21/C%20or%20C++/smart_ptr/</url>
@@ -301,6 +326,28 @@
     
     
     <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
@@ -312,9 +359,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -334,20 +381,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
@@ -367,31 +403,20 @@
     
     
     <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
