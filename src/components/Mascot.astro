@@ -1,0 +1,136 @@
+---
+const messages = [
+  "……干嘛一直看我。",
+  "我才不是特意等你的。",
+  "Code Is Elegant……这话还不错。",
+  "快去写代码，别发呆了。",
+  "谁……谁说我在意了！",
+  "（在手机上打字）...还好啦。",
+  "这次……还算不错啦。",
+  "……要不要我帮你？才不是！",
+]
+---
+
+<div id="mascot-widget" class="mascot-widget">
+  <!-- speech bubble -->
+  <div id="mascot-bubble" class="mascot-bubble hidden">
+    <p id="mascot-msg"></p>
+  </div>
+  <!-- character image -->
+  <img
+    id="mascot-img"
+    src="/mascot.png"
+    alt="博客桌宠"
+    class="mascot-img"
+    draggable="false"
+  />
+</div>
+
+<style>
+.mascot-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  /* hide on mobile */
+}
+
+@media (max-width: 768px) {
+  .mascot-widget { display: none; }
+}
+
+.mascot-img {
+  width: 120px;
+  height: auto;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: mascot-float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  transition: transform 0.15s ease;
+  user-select: none;
+}
+
+.mascot-img:hover {
+  transform: scale(1.06);
+}
+
+.mascot-img:active {
+  animation: mascot-bounce 0.3s ease;
+}
+
+.mascot-bubble {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(200,220,255,0.6);
+  border-radius: 14px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.72rem;
+  color: #334;
+  text-align: center;
+  max-width: 130px;
+  box-shadow: 0 4px 16px rgba(100,140,220,0.15);
+  pointer-events: none;
+  position: relative;
+  animation: bubble-appear 0.2s ease;
+}
+.mascot-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: rgba(255,255,255,0.92);
+  border-bottom: 0;
+}
+.mascot-bubble.hidden { display: none; }
+
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes mascot-bounce {
+  0%, 100% { transform: scale(1); }
+  40%      { transform: scale(0.9) rotate(-3deg); }
+  70%      { transform: scale(1.08) rotate(2deg); }
+}
+@keyframes bubble-appear {
+  from { opacity: 0; transform: scale(0.8) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+</style>
+
+<script define:vars={{ messages }}>
+const img = document.getElementById('mascot-img');
+const bubble = document.getElementById('mascot-bubble');
+const msgEl = document.getElementById('mascot-msg');
+
+let bubbleTimer = null;
+
+function showMessage(text) {
+  msgEl.textContent = text;
+  bubble.classList.remove('hidden');
+  if (bubbleTimer) clearTimeout(bubbleTimer);
+  bubbleTimer = setTimeout(() => bubble.classList.add('hidden'), 3200);
+}
+
+// Click: show random message + bounce
+img.addEventListener('click', () => {
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  showMessage(msg);
+  img.style.animation = 'none';
+  requestAnimationFrame(() => {
+    img.style.animation = 'mascot-bounce 0.3s ease, mascot-float 3s ease-in-out 0.3s infinite';
+  });
+});
+
+// Greeting after 2s
+setTimeout(() => showMessage(messages[0]), 2000);
+</script>

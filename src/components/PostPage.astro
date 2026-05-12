@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getPostUrlBySlug } from "@utils/url-utils";
+import PostCardGrid from "./PostCardGrid.astro";
+
+const { page } = Astro.props;
+
+let delay = 0;
+const interval = 50;
+---
+<div class="transition grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    {page.data.map((entry: CollectionEntry<"posts">) => (
+        <PostCardGrid
+            entry={entry}
+            title={entry.data.title}
+            tags={entry.data.tags}
+            category={entry.data.category}
+            published={entry.data.published}
+            updated={entry.data.updated}
+            url={getPostUrlBySlug(entry.slug)}
+            image={entry.data.image}
+            description={entry.data.description}
+            draft={entry.data.draft}
+            class:list="onload-animation"
+            style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
+        />
+    ))}
+</div>

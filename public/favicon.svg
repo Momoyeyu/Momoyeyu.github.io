@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="ball" cx="38%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#a8d8f0"/>
+      <stop offset="55%" stop-color="#5bacd6"/>
+      <stop offset="100%" stop-color="#2b6ea8"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="35%" cy="28%" r="30%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.65)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="52" r="44" fill="url(#ball)"/>
+  <circle cx="50" cy="52" r="44" fill="url(#shine)"/>
+  <rect x="34" y="46" width="7" height="12" rx="3.5" fill="rgba(20,40,80,0.8)"/>
+  <rect x="59" y="46" width="7" height="12" rx="3.5" fill="rgba(20,40,80,0.8)"/>
+</svg>
