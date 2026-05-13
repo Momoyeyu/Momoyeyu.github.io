@@ -19,6 +19,17 @@ export type SiteConfig = {
 	themeColor: {
 		hue: number;
 		fixed: boolean;
+		defaultScheme?: "minimal" | "tinted" | "glass";
+		defaultAccentChroma?: number;
+		defaultSurfaceChroma?: number;
+	};
+	wallpaper: {
+		defaultMode: "banner" | "overlay" | "none";
+		switchable: boolean;
+	};
+	display: {
+		defaultPostLayout: "grid" | "list";
+		defaultBannerTitle: boolean;
 	};
 	banner: {
 		enable: boolean;

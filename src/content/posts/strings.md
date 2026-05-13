@@ -1,9 +1,10 @@
 ---
-title: Python-字符串
+title: Strings
 published: 2023-01-19
 description: ''
-tags: [Python]
-category: Python
+tags: [Python, 数据结构]
+category: Python 入门
+episode: 3
 draft: false
 image: '/img/cover6.jpg'
 lang: 'zh_CN'

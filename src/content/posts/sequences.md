@@ -1,9 +1,10 @@
 ---
-title: Python-序列
+title: Sequences
 published: 2023-01-20
 description: ''
-tags: [Python]
-category: Python
+tags: [Python, 数据结构, 序列]
+category: Python 入门
+episode: 4
 draft: false
 image: '/img/cover1.jpg'
 lang: 'zh_CN'

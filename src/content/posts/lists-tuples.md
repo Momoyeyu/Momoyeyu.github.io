@@ -1,9 +1,10 @@
 ---
-title: Python-列表与元组
+title: Lists and Tuples
 published: 2023-01-17
 description: ''
-tags: [Python]
-category: Python
+tags: [Python, 数据结构, 序列]
+category: Python 入门
+episode: 2
 draft: false
 image: '/img/cover3.jpg'
 lang: 'zh_CN'

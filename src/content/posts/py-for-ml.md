@@ -2,8 +2,9 @@
 title: Python for Machine Learning
 published: 2023-07-03
 description: ''
-tags: [Python]
-category: Python
+tags: [Python, 深度学习]
+category: Python 入门
+episode: 6
 draft: false
 image: '/img/cover4.jpg'
 lang: 'zh_CN'

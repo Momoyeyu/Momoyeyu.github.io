@@ -1,15 +1,14 @@
 ---
-title: 智能指针
+title: Smart Pointer
 published: 2023-04-21
 description: ''
-tags: [C++]
-category: C++
+tags: [C++, 内存管理]
+category: C++ 入门
+episode: 4
 draft: false
 image: '/img/cover2.jpg'
 lang: 'zh_CN'
 ---
-
-# 智能指针
 
 ## 简介
 

@@ -3,16 +3,25 @@
 @layer components {
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden transition;
-        background: rgba(255, 255, 255, 0.72);
+        background: color-mix(in oklch, var(--card-bg) 78%, transparent);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 10px 34px rgba(120, 48, 24, 0.10), 0 2px 10px rgba(0, 0, 0, 0.04);
     }
     :root.dark .card-base {
-        background: rgba(26, 30, 40, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+        background: color-mix(in oklch, var(--card-bg) 82%, transparent);
+        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.34), 0 2px 10px rgba(0, 0, 0, 0.22);
+    }
+    :root[data-color-scheme="minimal"] .card-base {
+        background: var(--card-bg);
+        border-color: var(--line-color);
+    }
+    :root[data-color-scheme="tinted"] .card-base {
+        background: color-mix(in oklch, var(--card-bg) 92%, var(--primary) 8%);
+    }
+    :root[data-color-scheme="glass"] .card-base {
+        background: color-mix(in oklch, var(--card-bg) 76%, transparent);
     }
     h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
         @apply transition;
@@ -132,6 +141,98 @@
     }
 }
 
+/* Fullscreen wallpaper backdrop — sits behind everything via z-index -10.
+   Hidden by default; only the overlay mode turns it on. */
+#web_bg {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    display: none;
+}
+
+:root[data-wallpaper-mode="overlay"] #web_bg {
+    display: block;
+    background:
+        linear-gradient(135deg, oklch(0.96 0.04 var(--hue) / 0.82), oklch(0.88 0.05 calc(var(--hue) + 38) / 0.68)),
+        url("/banner.jpg") center / cover fixed;
+    opacity: 0.52;
+}
+
+:root.dark[data-wallpaper-mode="overlay"] #web_bg {
+    background:
+        linear-gradient(135deg, oklch(0.13 0.035 var(--hue) / 0.88), oklch(0.18 0.05 calc(var(--hue) + 26) / 0.72)),
+        url("/banner.jpg") center / cover fixed;
+    opacity: 0.52;
+}
+
+/* Non-banner wallpaper modes (overlay/none): hide the top banner image
+   AND collapse the banner-shaped top spacing so the content card snaps
+   right under the navbar.
+
+   --main-panel-top is read by MainGridLayout's absolute wrapper via
+   `top: var(--main-panel-top, <SSR fallback>)`. Banner mode never sets
+   the var, so the fallback (calc(35vh - 3.5rem)) keeps existing
+   behavior intact. */
+:root[data-wallpaper-mode="overlay"] #banner-wrapper,
+:root[data-wallpaper-mode="none"] #banner-wrapper {
+    display: none;
+}
+
+:root[data-wallpaper-mode="overlay"],
+:root[data-wallpaper-mode="none"] {
+    --main-panel-top: 5.5rem;
+}
+
+:root[data-wallpaper-mode="overlay"] body.enable-banner #main-grid,
+:root[data-wallpaper-mode="overlay"] body.enable-banner.is-home #main-grid,
+:root[data-wallpaper-mode="none"] body.enable-banner #main-grid,
+:root[data-wallpaper-mode="none"] body.enable-banner.is-home #main-grid {
+    transform: none;
+}
+
+:root[data-wallpaper-mode="overlay"] body.enable-banner #top-row,
+:root[data-wallpaper-mode="none"] body.enable-banner #top-row {
+    height: 5.5rem;
+}
+
+:root[data-wallpaper-mode="overlay"] body.enable-banner #sidebar-sticky,
+:root[data-wallpaper-mode="none"] body.enable-banner #sidebar-sticky {
+    top: 1rem;
+}
+
+:root[data-banner-title="hide"] .banner-motto {
+    opacity: 0;
+}
+
+:root[data-post-layout="list"] .post-feed {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 768px) {
+    :root[data-post-layout="list"] .post-feed .grid-post-card {
+        min-height: 13rem;
+        flex-direction: row;
+    }
+
+    :root[data-post-layout="list"] .post-feed .grid-post-card > a:first-child {
+        width: 36%;
+        height: auto !important;
+        min-height: 13rem;
+        flex-shrink: 0;
+    }
+
+    :root[data-post-layout="list"] .post-feed .grid-post-card > div:last-child {
+        padding: 1.25rem 1.5rem;
+    }
+}
+
+#banner-tint {
+    background:
+        radial-gradient(circle at 30% 20%, oklch(0.72 var(--accent-chroma) var(--hue) / 0.24), transparent 34%),
+        linear-gradient(to bottom, oklch(0.20 0.04 var(--hue) / 0.10), oklch(0.16 0.04 var(--hue) / 0.36));
+}
+
 .custom-md img, #post-cover img {
     @apply cursor-zoom-in
 }
@@ -177,4 +278,53 @@
 }
 .banner-text-float {
     animation: banner-float 4s ease-in-out infinite;
+}
+
+/* Banner wave parallax — 4 layers at different speeds drift horizontally */
+@keyframes banner-wave-drift {
+    0%   { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+}
+.banner-waves use {
+    animation-name: banner-wave-drift;
+    animation-timing-function: cubic-bezier(0.55, 0.5, 0.45, 0.5);
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+.banner-waves use:nth-child(1) { animation-delay: -2s; animation-duration:  9s; }
+.banner-waves use:nth-child(2) { animation-delay: -3s; animation-duration: 13s; }
+.banner-waves use:nth-child(3) { animation-delay: -4s; animation-duration: 17s; }
+.banner-waves use:nth-child(4) { animation-delay: -5s; animation-duration: 24s; }
+@media (prefers-reduced-motion: reduce) {
+    .banner-waves use { animation: none; }
+}
+
+/* Falling maple leaves — small decorative drift across the banner */
+@keyframes leaf-fall {
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10%  { opacity: 0.55; }
+    90%  { opacity: 0.55; }
+    100% {
+        transform: translate3d(3rem, 95vh, 0) rotate(420deg);
+        opacity: 0;
+    }
+}
+.maple-leaves .leaf {
+    position: absolute;
+    display: inline-block;
+    user-select: none;
+    will-change: transform, opacity;
+    animation: leaf-fall linear infinite;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.18));
+}
+.maple-leaves .l1 { left:  8%; font-size: 1.4rem; animation-duration: 18s; animation-delay:   0s; }
+.maple-leaves .l2 { left: 24%; font-size: 1rem;   animation-duration: 25s; animation-delay:  -8s; }
+.maple-leaves .l3 { left: 48%; font-size: 1.7rem; animation-duration: 22s; animation-delay:  -4s; }
+.maple-leaves .l4 { left: 70%; font-size: 1.2rem; animation-duration: 27s; animation-delay: -14s; }
+.maple-leaves .l5 { left: 88%; font-size: 1rem;   animation-duration: 20s; animation-delay: -19s; }
+@media (prefers-reduced-motion: reduce) {
+    .maple-leaves .leaf { animation: none; opacity: 0; }
 }

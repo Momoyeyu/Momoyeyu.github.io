@@ -7,6 +7,8 @@ enum I18nKey {
 	tags = "tags",
 	categories = "categories",
 	recentPosts = "recentPosts",
+	pinnedPosts = "pinnedPosts",
+	latestPosts = "latestPosts",
 
 	comments = "comments",
 

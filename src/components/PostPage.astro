@@ -1,15 +1,62 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getPostUrlBySlug } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
 import PostCardGrid from "./PostCardGrid.astro";
 
 const { page } = Astro.props;
 
+const posts = page.data as CollectionEntry<"posts">[];
+const pinned = posts.filter((p) => p.data.pinned);
+const rest = posts.filter((p) => !p.data.pinned);
+const showDivider = pinned.length > 0 && rest.length > 0;
+
 let delay = 0;
 const interval = 50;
 ---
-<div class="transition grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-    {page.data.map((entry: CollectionEntry<"posts">) => (
+{pinned.length > 0 && (
+    <section class="mb-6">
+        <div class="flex items-center gap-2 mb-3 onload-animation" style={`animation-delay: calc(var(--content-delay) + ${delay * interval}ms);`}>
+            <Icon name="fa6-solid:thumbtack" class="text-[var(--primary)] text-base" />
+            <h2 class="text-base font-semibold text-90 tracking-wide">
+                {i18n(I18nKey.pinnedPosts)}
+            </h2>
+        </div>
+        <div class="post-feed transition grid grid-cols-1 md:grid-cols-2 gap-4">
+            {pinned.map((entry) => (
+                <PostCardGrid
+                    entry={entry}
+                    title={entry.data.title}
+                    tags={entry.data.tags}
+                    category={entry.data.category}
+                    published={entry.data.published}
+                    updated={entry.data.updated}
+                    url={getPostUrlBySlug(entry.slug)}
+                    image={entry.data.image}
+                    description={entry.data.description}
+                    draft={entry.data.draft}
+                    class:list="onload-animation"
+                    style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
+                />
+            ))}
+        </div>
+    </section>
+)}
+
+{showDivider && (
+    <div class="pinned-divider flex items-center gap-3 my-6 onload-animation" style={`animation-delay: calc(var(--content-delay) + ${delay * interval}ms);`}>
+        <span class="flex-1 h-px bg-[var(--line-divider)]"></span>
+        <span class="text-xs uppercase tracking-[0.2em] text-75">
+            {i18n(I18nKey.latestPosts)}
+        </span>
+        <span class="flex-1 h-px bg-[var(--line-divider)]"></span>
+    </div>
+)}
+
+<div class="post-feed transition grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    {rest.map((entry) => (
         <PostCardGrid
             entry={entry}
             title={entry.data.title}

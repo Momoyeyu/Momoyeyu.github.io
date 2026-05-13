@@ -1,9 +1,10 @@
 ---
-title: Python-字典
+title: Dictionaries
 published: 2023-01-22
 description: ''
-tags: [Python]
-category: Python
+tags: [Python, 数据结构]
+category: Python 入门
+episode: 5
 draft: false
 image: '/img/cover5.jpg'
 lang: 'zh_CN'

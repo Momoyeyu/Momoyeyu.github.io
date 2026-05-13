@@ -13,6 +13,7 @@ interface Props {
 	category: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
+	hideCategory?: boolean;
 }
 const {
 	published,
@@ -21,6 +22,7 @@ const {
 	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
+	hideCategory = false,
 } = Astro.props;
 const className = Astro.props.class;
 ---
@@ -47,19 +49,21 @@ const className = Astro.props.class;
     )}
 
     <!-- categories -->
-    <div class="flex items-center">
-        <div class="meta-icon"
-        >
-            <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
+    {!hideCategory && (
+        <div class="flex items-center">
+            <div class="meta-icon"
+            >
+                <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
+            </div>
+            <div class="flex flex-row flex-nowrap items-center">
+                <a href={getCategoryUrl(category)} aria-label={`View all posts in the ${category} category`}
+                   class="link-lg transition text-50 text-sm font-medium
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+                    {category || i18n(I18nKey.uncategorized)}
+                </a>
+            </div>
         </div>
-        <div class="flex flex-row flex-nowrap items-center">
-            <a href={getCategoryUrl(category)} aria-label={`View all posts in the ${category} category`}
-               class="link-lg transition text-50 text-sm font-medium
-                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
-                {category || i18n(I18nKey.uncategorized)}
-            </a>
-        </div>
-    </div>
+    )}
 
     <!-- tags -->
     <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>

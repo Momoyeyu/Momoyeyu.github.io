@@ -1,13 +1,10 @@
 ---
-const messages = [
-  "……干嘛一直看我。",
-  "我才不是特意等你的。",
-  "Code Is Elegant……这话还不错。",
-  "快去写代码，别发呆了。",
-  "谁……谁说我在意了！",
-  "（在手机上打字）...还好啦。",
-  "这次……还算不错啦。",
-  "……要不要我帮你？才不是！",
+const mascotStates = [
+  { image: "/mascot/sprites/normal.png", message: "……干嘛一直看我。" },
+  { image: "/mascot/sprites/pouty.png", message: "我才不是特意等你的。" },
+  { image: "/mascot/sprites/embarrassed.png", message: "谁、谁说我在意了！" },
+  { image: "/mascot/sprites/happy.png", message: "这次……还算不错啦。" },
+  { image: "/mascot/sprites/phone.png", message: "（打字中）...还好啦。" },
 ]
 ---
 
@@ -19,7 +16,7 @@ const messages = [
   <!-- character image -->
   <img
     id="mascot-img"
-    src="/mascot.png"
+    src={mascotStates[0].image}
     alt="博客桌宠"
     class="mascot-img"
     draggable="false"
@@ -107,12 +104,32 @@ const messages = [
 }
 </style>
 
-<script define:vars={{ messages }}>
+<script is:inline define:vars={{ mascotStates }}>
+/** @type {{ image: string; message: string }[]} */
+const states = [
+  { image: "/mascot/sprites/normal.png", message: "……干嘛一直看我。" },
+  { image: "/mascot/sprites/pouty.png", message: "我才不是特意等你的。" },
+  { image: "/mascot/sprites/embarrassed.png", message: "谁、谁说我在意了！" },
+  { image: "/mascot/sprites/happy.png", message: "这次……还算不错啦。" },
+  { image: "/mascot/sprites/phone.png", message: "（打字中）...还好啦。" },
+];
 const img = document.getElementById('mascot-img');
 const bubble = document.getElementById('mascot-bubble');
 const msgEl = document.getElementById('mascot-msg');
 
 let bubbleTimer = null;
+let stateTimer = null;
+
+function setMascotState(state) {
+  img.src = state.image;
+  img.alt = state.message;
+  showMessage(state.message);
+}
+
+function resetMascotState() {
+  img.src = states[0].image;
+  img.alt = '博客桌宠';
+}
 
 function showMessage(text) {
   msgEl.textContent = text;
@@ -123,8 +140,10 @@ function showMessage(text) {
 
 // Click: show random message + bounce
 img.addEventListener('click', () => {
-  const msg = messages[Math.floor(Math.random() * messages.length)];
-  showMessage(msg);
+  const state = states[Math.floor(Math.random() * states.length)];
+  setMascotState(state);
+  if (stateTimer) clearTimeout(stateTimer);
+  stateTimer = setTimeout(resetMascotState, 3200);
   img.style.animation = 'none';
   requestAnimationFrame(() => {
     img.style.animation = 'mascot-bounce 0.3s ease, mascot-float 3s ease-in-out 0.3s infinite';
@@ -132,5 +151,5 @@ img.addEventListener('click', () => {
 });
 
 // Greeting after 2s
-setTimeout(() => showMessage(messages[0]), 2000);
+setTimeout(() => showMessage(states[0].message), 2000);
 </script>

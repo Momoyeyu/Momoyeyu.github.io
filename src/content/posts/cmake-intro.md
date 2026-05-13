@@ -2,14 +2,15 @@
 title: CMake 入门
 published: 2026-05-12
 description: ''
-tags: [C++, 工具]
-category: C++
+tags: [C++, CMake, 工具链]
+category: C++ 入门
+episode: 2
 draft: false
 image: '/img/cover1.jpg'
 lang: 'zh_CN'
 ---
 
-CMake Introduction 的目标不是覆盖 CMake 的全部功能，而是解释一个 C++ 初学者最先需要理解的几件事：CMake 是什么、`CMakeLists.txt` 写什么、如何配置和构建项目，以及为什么现代 C++ 项目普遍围绕 target 来组织。
+本文的目标不是覆盖 CMake 的全部功能，而是解释一个 C++ 初学者最先需要理解的几件事：CMake 是什么、`CMakeLists.txt` 写什么、如何配置和构建项目，以及为什么现代 C++ 项目普遍围绕 target 来组织。
 
 很多 C++ 初学者第一次看到 `CMakeLists.txt` 时，会误以为 CMake 是另一种编译器，或者是 Makefile 的替代语法。更准确地说，CMake 是一个构建系统生成器。
 

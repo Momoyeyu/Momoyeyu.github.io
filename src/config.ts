@@ -8,12 +8,23 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "杰哥的AI工坊",
+	title: "夜羽的小作坊",
 	subtitle: "技术学习与分享",
 	lang: "zh_CN",
 	themeColor: {
-		hue: 18,
+		hue: 24,
 		fixed: false,
+		defaultScheme: "glass",
+		defaultAccentChroma: 0.16,
+		defaultSurfaceChroma: 0.026,
+	},
+	wallpaper: {
+		defaultMode: "banner",
+		switchable: true,
+	},
+	display: {
+		defaultPostLayout: "grid",
+		defaultBannerTitle: true,
 	},
 	banner: {
 		enable: true,
@@ -39,7 +50,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "GitHub",
-			url: "https://github.com/Momoyeyu",
+			url: "https://github.com/momoyeyu",
 			external: true,
 		},
 	],
@@ -47,18 +58,13 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.jpg",
-	name: "苏俊杰",
+	name: "墨末夜羽",
 	bio: "Code Is Elegant",
 	links: [
 		{
-			name: "学术主页",
-			icon: "fa6-solid:graduation-cap",
-			url: "https://scholar.google.com/citations?user=0c27Ns4AAAAJ&hl",
-		},
-		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/Momoyeyu",
+			url: "https://github.com/momoyeyu",
 		},
 		{
 			name: "Bilibili",

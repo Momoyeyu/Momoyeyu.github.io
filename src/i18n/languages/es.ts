@@ -10,6 +10,8 @@ export const es: Translation = {
 	[Key.tags]: "Etiquetas",
 	[Key.categories]: "Categorías",
 	[Key.recentPosts]: "Publicaciones recientes",
+	[Key.pinnedPosts]: "Fijadas",
+	[Key.latestPosts]: "Últimas publicaciones",
 
 	[Key.comments]: "Comentarios",
 

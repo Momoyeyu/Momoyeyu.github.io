@@ -3,7 +3,6 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import { getCategoryUrl } from "@utils/url-utils.ts";
 
-// // Retrieve posts and sort them by publication date
 async function getRawSortedPosts() {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
@@ -15,6 +14,42 @@ async function getRawSortedPosts() {
 		return dateA > dateB ? -1 : 1;
 	});
 	return sorted;
+}
+
+// Assigns series metadata (position, total, prev/next) to each post in a series.
+// A "series" = group of posts with the same category and an `episode` value.
+// The displayed EP number is the auto-numbered position (1..N) within the
+// series; the raw `episode` value is only used as a sort key, so inserting a
+// new article with episode: 2.5 cleanly slots in without renumbering siblings.
+function assignSeriesMetadata(sorted: CollectionEntry<"posts">[]) {
+	const byCategory: Record<string, CollectionEntry<"posts">[]> = {};
+	for (const post of sorted) {
+		const cat = post.data.category;
+		if (!cat) continue;
+		if (typeof post.data.episode !== "number") continue;
+		if (!byCategory[cat]) byCategory[cat] = [];
+		byCategory[cat].push(post);
+	}
+	for (const cat of Object.keys(byCategory)) {
+		const arr = byCategory[cat]
+			.slice()
+			.sort(
+				(a, b) => (a.data.episode as number) - (b.data.episode as number),
+			);
+		const total = arr.length;
+		for (let i = 0; i < total; i++) {
+			arr[i].data.seriesPosition = i + 1;
+			arr[i].data.seriesTotal = total;
+			if (i > 0) {
+				arr[i].data.seriesPrevSlug = arr[i - 1].slug;
+				arr[i].data.seriesPrevTitle = arr[i - 1].data.title;
+			}
+			if (i < total - 1) {
+				arr[i].data.seriesNextSlug = arr[i + 1].slug;
+				arr[i].data.seriesNextTitle = arr[i + 1].data.title;
+			}
+		}
+	}
 }
 
 export async function getSortedPosts() {
@@ -29,6 +64,16 @@ export async function getSortedPosts() {
 		sorted[i].data.prevTitle = sorted[i + 1].data.title;
 	}
 
+	assignSeriesMetadata(sorted);
+
+	// Float pinned posts to the top of the list. Done after prev/next
+	// wiring above so chronological navigation on post pages is preserved.
+	sorted.sort((a, b) => {
+		const pa = a.data.pinned ? 1 : 0;
+		const pb = b.data.pinned ? 1 : 0;
+		return pb - pa;
+	});
+
 	return sorted;
 }
 export type PostForList = {
@@ -37,8 +82,8 @@ export type PostForList = {
 };
 export async function getSortedPostsList(): Promise<PostForList[]> {
 	const sortedFullPosts = await getRawSortedPosts();
+	assignSeriesMetadata(sortedFullPosts);
 
-	// delete post.body
 	const sortedPostsList = sortedFullPosts.map((post) => ({
 		slug: post.slug,
 		data: post.data,

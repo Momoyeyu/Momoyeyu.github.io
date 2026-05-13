@@ -1,15 +1,14 @@
 ---
-title: C++ Vector 详解
+title: Vector
 published: 2023-04-26
 description: ''
-tags: [C++]
-category: C++
+tags: [C++, STL]
+category: C++ 入门
+episode: 3
 draft: false
 image: '/img/cover3.jpg'
 lang: 'zh_CN'
 ---
-
-# Vector
 
 ## 简介
 

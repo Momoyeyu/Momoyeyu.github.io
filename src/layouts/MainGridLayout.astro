@@ -40,6 +40,8 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 const mainPanelTop = siteConfig.banner.enable
 	? `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 	: "5.5rem";
+
+const bannerSrc = (setOGTypeArticle && banner) ? banner : siteConfig.banner.src;
 ---
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
@@ -55,10 +57,19 @@ const mainPanelTop = siteConfig.banner.enable
 <!-- Banner -->
 {siteConfig.banner.enable && <div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden`} style={`top: -${BANNER_HEIGHT_EXTEND}vh`}>
     <ImageWrapper id="banner" alt="Banner image of the blog" class:list={["object-cover h-full transition duration-700 opacity-0 scale-105"]}
-                  src={siteConfig.banner.src} position={siteConfig.banner.position}
+                  src={bannerSrc} position={siteConfig.banner.position}
     >
     </ImageWrapper>
-    <!-- Banner motto overlay -->
+    <div id="banner-tint" class="absolute inset-0 z-10 pointer-events-none"></div>
+    <!-- Maple leaf decoration (matches site theme) -->
+    <div class="maple-leaves absolute inset-0 z-[12] pointer-events-none select-none overflow-hidden" aria-hidden="true">
+        <span class="leaf l1">🍁</span>
+        <span class="leaf l2">🍁</span>
+        <span class="leaf l3">🍁</span>
+        <span class="leaf l4">🍁</span>
+        <span class="leaf l5">🍁</span>
+    </div>
+    <!-- Banner motto, only visible on the home page (see Layout.astro CSS) -->
     <div class="banner-motto absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none select-none">
         <div class="text-white/90 font-bold text-5xl md:text-6xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] tracking-widest banner-text-float">
             Code Is Elegant
@@ -67,10 +78,24 @@ const mainPanelTop = siteConfig.banner.enable
             写优雅的代码
         </div>
     </div>
+    <!-- Wavy fade into page background -->
+    <div class="banner-waves absolute bottom-0 left-0 right-0 z-[15] pointer-events-none h-[10vh] min-h-[3rem] max-h-[9rem] md:h-[14vh]">
+        <svg class="w-full h-full block" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="geometricPrecision">
+            <defs>
+                <path id="banner-gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v48h-352z"></path>
+            </defs>
+            <g>
+                <use href="#banner-gentle-wave" x="48" y="0" style="fill:var(--page-bg);opacity:0.28"></use>
+                <use href="#banner-gentle-wave" x="48" y="3" style="fill:var(--page-bg);opacity:0.5"></use>
+                <use href="#banner-gentle-wave" x="48" y="5" style="fill:var(--page-bg);opacity:0.7"></use>
+                <use href="#banner-gentle-wave" x="48" y="7" style="fill:var(--page-bg);opacity:1"></use>
+            </g>
+        </svg>
+    </div>
 </div>}
 
 <!-- Main content -->
-<div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
+<div class="absolute w-full z-30 pointer-events-none" style={`top: var(--main-panel-top, ${mainPanelTop})`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
         <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto]
