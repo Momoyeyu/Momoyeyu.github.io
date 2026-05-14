@@ -2,7 +2,7 @@
 title: Mascot Anything
 published: 2026-05-13
 description: ''
-tags: [图像生成, 桌宠, 开源]
+tags: [深度学习, 开源]
 category: 项目
 draft: false
 pinned: true

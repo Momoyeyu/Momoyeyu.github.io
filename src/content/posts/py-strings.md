@@ -1,8 +1,8 @@
 ---
-title: Strings
+title: Python 字符串
 published: 2023-01-19
 description: ''
-tags: [Python, 数据结构]
+tags: [Python]
 category: Python 入门
 episode: 3
 draft: false

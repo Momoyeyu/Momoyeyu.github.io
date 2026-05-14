@@ -1,8 +1,8 @@
 ---
-title: Branching and Loops
+title: Python 分支与循环
 published: 2023-01-20
 description: ''
-tags: [Python, 控制流]
+tags: [Python]
 category: Python 入门
 episode: 1
 draft: false

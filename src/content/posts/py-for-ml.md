@@ -1,5 +1,5 @@
 ---
-title: Python for Machine Learning
+title: Python ML 入门
 published: 2023-07-03
 description: ''
 tags: [Python, 深度学习]

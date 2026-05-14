@@ -1,0 +1,105 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+
+interface FriendLink {
+	name: string;
+	url: string;
+	avatar: string;
+	descr: string;
+}
+
+interface FriendGroup {
+	title: string;
+	desc: string;
+	links: FriendLink[];
+}
+
+const groups: FriendGroup[] = [
+	{
+		title: "友情链接",
+		desc: "常读的技术博客与朋友们",
+		links: [
+			{
+				name: "DLog",
+				url: "https://dlog.com.cn/",
+				avatar: "https://dlog.com.cn/favicon/favicon.ico",
+				descr: "都是风景，幸会！",
+			},
+			{
+				name: "钰椿",
+				url: "https://blog.silencieux.xyz/",
+				avatar: "https://blog.silencieux.xyz/images/%E6%B0%B4%E6%B0%B4.jpg",
+				descr: "惟大英雄能本色，是真名士自风流",
+			},
+		],
+	},
+	{
+		title: "技术支持",
+		desc: "本网站的搭建由以下开源项目提供技术支持",
+		links: [
+			{
+				name: "Astro",
+				url: "https://astro.build/",
+				avatar: "https://astro.build/assets/press/astro-icon-light-gradient.svg",
+				descr: "The web framework for content-driven websites",
+			},
+			{
+				name: "Fuwari",
+				url: "https://github.com/saicaca/fuwari",
+				avatar: "https://avatars.githubusercontent.com/u/46560121",
+				descr: "A static blog template built with Astro",
+			},
+		],
+	},
+];
+---
+
+<MainGridLayout title="友链">
+	<div class="card-base p-6 md:p-8 mb-4">
+		<div class="font-bold text-2xl mb-2 text-neutral-900 dark:text-neutral-100">友链</div>
+		<div class="text-sm text-50 mb-6">互换链接，广交朋友</div>
+
+		{groups.map((group) => (
+			<div class="mb-8 last:mb-0">
+				<div class="flex items-center gap-2 mb-1">
+					<div class="font-bold text-lg text-neutral-900 dark:text-neutral-100">{group.title}</div>
+				</div>
+				<div class="text-sm text-50 mb-4">{group.desc}</div>
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+					{group.links.map((link) => (
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="friend-card group flex items-center gap-4 p-4 rounded-xl transition-all duration-200 border border-[var(--line-divider)] hover:shadow-md hover:border-[var(--primary)] hover:-translate-y-0.5"
+						>
+							<img
+								src={link.avatar}
+								alt={link.name}
+								class="w-12 h-12 rounded-full object-cover shrink-0 ring-2 ring-black/5 dark:ring-white/10 group-hover:ring-[var(--primary)] transition"
+								loading="lazy"
+								onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>'"
+							/>
+							<div class="overflow-hidden">
+								<div class="font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-[var(--primary)] transition truncate">
+									{link.name}
+								</div>
+								<div class="text-sm text-50 truncate">{link.descr}</div>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+		))}
+
+		<div class="mt-8 pt-6 border-t border-dashed border-[var(--line-divider)]">
+			<div class="text-sm text-30">
+				如需交换友链，请在
+				<a href="https://github.com/momoyeyu/momoyeyu.github.io/issues" target="_blank" rel="noopener" class="text-[var(--primary)] hover:underline">
+					GitHub Issues
+				</a>
+				中留下你的站点信息。
+			</div>
+		</div>
+	</div>
+</MainGridLayout>

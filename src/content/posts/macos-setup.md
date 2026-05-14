@@ -1,5 +1,5 @@
 ---
-title: Mac Usage Tips
+title: macOS 选购与配置
 published: 2025-05-13
 description: ''
 tags: [macOS, 工具链]
@@ -88,24 +88,34 @@ brew services start mysql
 brew services list
 ```
 
-### 深度学习环境
+### Python 环境
 
-本地跑实验装 [Miniconda](https://docs.anaconda.com/miniconda/)，按官网说明走。装完顺手装 Jupyter：
+推荐用 [uv](https://docs.astral.sh/uv/)，底层 Rust 实现，安装快、体积小、依赖解析速度比 pip/conda 快一个数量级。
 
 ```bash
-pip install jupyter jupyter_contrib_nbextensions
-pip install jupyter_nbextensions_configurator jupyterlab_code_formatter
+brew install uv
 ```
 
-Conda 配个国内源，编辑 `~/miniconda3/.condarc`：
+创建项目和虚拟环境：
 
-```yaml
-channels:
-  - https://mirrors.aliyun.com/anaconda/pkgs/main/
-  - https://mirrors.aliyun.com/anaconda/pkgs/r/
-  - https://mirrors.aliyun.com/anaconda/pkgs/msys2/
-  - defaults
-show_channel_urls: false
+```bash
+uv init my-project && cd my-project
+uv venv                  # 创建 .venv
+source .venv/bin/activate
+uv add torch numpy jupyter
+```
+
+`uv` 同时管理 Python 版本和依赖，不需要额外装 pyenv 或 conda。如果需要特定 Python 版本：
+
+```bash
+uv python install 3.12
+uv venv --python 3.12
+```
+
+装 Jupyter 之类的全局工具用 `uv tool`，不污染项目环境：
+
+```bash
+uv tool install jupyter
 ```
 
 ### 学术工具链

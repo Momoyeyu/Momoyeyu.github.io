@@ -8,6 +8,7 @@ import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
 import ImageWrapper from "../components/misc/ImageWrapper.astro";
 import TOC from "../components/widget/TOC.astro";
+import RightSidebar from "../components/widget/RightSidebar.astro";
 import { siteConfig } from "../config";
 import {
 	BANNER_HEIGHT,
@@ -23,6 +24,8 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	headings?: MarkdownHeading[];
+	category?: string;
+	currentSlug?: string;
 }
 
 const {
@@ -32,7 +35,11 @@ const {
 	lang,
 	setOGTypeArticle,
 	headings = [],
+	category,
+	currentSlug,
 } = Astro.props;
+
+const isPostPage = headings.length > 0;
 const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
 const hasBannerLink = !!siteConfig.banner.credit.url;
@@ -98,9 +105,7 @@ const bannerSrc = (setOGTypeArticle && banner) ? banner : siteConfig.banner.src;
 <div class="absolute w-full z-30 pointer-events-none" style={`top: var(--main-panel-top, ${mainPanelTop})`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
-        <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto]
-    mx-auto gap-4 px-0 md:px-4"
-        >
+        <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4">
             <!-- Banner image credit -->
             {hasBannerCredit && <a href={siteConfig.banner.credit.url} id="banner-credit" target="_blank" rel="noopener" aria-label="Visit image source"
                                    class:list={["group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
@@ -115,18 +120,27 @@ const bannerSrc = (setOGTypeArticle && banner) ? banner : siteConfig.banner.src;
             </a>}
 
 
-            <SideBar class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" headings={headings}></SideBar>
+            <SideBar class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" category={category} currentSlug={currentSlug}></SideBar>
 
             <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden">
                 <div id="content-wrapper" class="onload-animation">
-                    <!-- the overflow-hidden here prevent long text break the layout-->
-                    <!-- make id different from windows.swup global property -->
                     <slot></slot>
                     <div class="footer col-span-2 onload-animation hidden lg:block">
                         <Footer></Footer>
                     </div>
                 </div>
             </main>
+
+            <!-- Right sidebar: always in the DOM for Swup, content swapped per page -->
+            <aside id="right-sidebar" class="xl:row-start-1 xl:row-end-2 xl:col-start-3 xl:max-w-[17.5rem] self-stretch">
+                {isPostPage ? (
+                    <RightSidebar
+                        headings={headings}
+                    />
+                ) : (
+                    <div id="toc-inner-wrapper" class="hidden"><div id="toc"></div></div>
+                )}
+            </aside>
 
             <div class="footer col-span-2 onload-animation block lg:hidden">
                 <Footer></Footer>
@@ -138,24 +152,43 @@ const bannerSrc = (setOGTypeArticle && banner) ? banner : siteConfig.banner.src;
     </div>
 </div>
 
-<!-- The things that should be under the banner, only the TOC for now -->
-<div class="absolute w-full z-0 hidden 2xl:block">
-    <div class="relative max-w-[var(--page-width)] mx-auto">
-        <!-- TOC component -->
-        {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] items-center",
-            {"toc-hide": siteConfig.banner.enable}]}
-        >
-            <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
-                <div id="toc" class="w-full h-full transition-swup-fade ">
-                    <div class="h-8 w-full"></div>
-                    <TOC headings={headings}></TOC>
-                    <div class="h-8 w-full"></div>
-                </div>
-            </div>
-        </div>}
+<style is:global>
+    #right-sidebar {
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        position: absolute;
+    }
+    @media (min-width: 1280px) {
+        #main-grid.has-rsb {
+            grid-template-columns: 17.5rem 1fr 17.5rem;
+        }
+        #main-grid.has-rsb #right-sidebar {
+            width: auto;
+            overflow: visible;
+            visibility: visible;
+            position: static;
+        }
+        #main-grid.has-rsb .footer.block.lg\:hidden {
+            grid-column: span 3;
+        }
+    }
+</style>
 
-        <!-- #toc needs to exist for Swup to work normally -->
-        {!siteConfig.toc.enable && <div id="toc"></div>}
-    </div>
-</div>
+<script>
+    function syncRightSidebar() {
+        const grid = document.getElementById('main-grid');
+        const sb = document.getElementById('right-sidebar');
+        if (!grid || !sb) return;
+        const hasContent = sb.querySelector('table-of-contents');
+        if (hasContent) {
+            grid.classList.add('has-rsb');
+        } else {
+            grid.classList.remove('has-rsb');
+        }
+    }
+    syncRightSidebar();
+    document.addEventListener('swup:content:replace', syncRightSidebar);
+</script>
+
 </Layout>

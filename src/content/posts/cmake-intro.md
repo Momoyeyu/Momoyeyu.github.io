@@ -1,8 +1,8 @@
 ---
-title: CMake 入门
-published: 2026-05-12
+title: C++ CMake 入门
+published: 2023-01-22
 description: ''
-tags: [C++, CMake, 工具链]
+tags: [C++, 工具链]
 category: C++ 入门
 episode: 2
 draft: false

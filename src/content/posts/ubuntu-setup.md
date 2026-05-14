@@ -1,8 +1,8 @@
 ---
-title: Ubuntu Setup Tips
+title: Ubuntu 装机与环境配置
 published: 2025-05-14
 description: ''
-tags: [Linux, Docker, CUDA, 深度学习]
+tags: [Linux, Docker, CUDA]
 category: 环境搭建
 draft: false
 image: '/img/cover4.jpg'

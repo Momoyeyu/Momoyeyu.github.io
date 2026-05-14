@@ -1,0 +1,89 @@
+---
+import type { MarkdownHeading } from "astro";
+import { siteConfig } from "../../config";
+import TOC from "./TOC.astro";
+
+interface Props {
+	class?: string;
+	headings: MarkdownHeading[];
+}
+
+const { headings = [] } = Astro.props;
+const className = Astro.props.class;
+---
+
+<div id="right-sidebar-content" class:list={[className, "w-full h-full"]}>
+	<div class="flex flex-col w-full gap-4 sticky top-4 max-h-[calc(100vh-2rem)]">
+
+		{/* TOC card — styled to match WidgetLayout */}
+		{siteConfig.toc.enable && headings.length > 0 && (
+			<div class="card-base pb-4 flex flex-col min-h-0">
+				<div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+					before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+					before:absolute before:left-[-16px] before:top-[5.5px]">目录</div>
+				<div id="toc-inner-wrapper" class="px-4 py-1 overflow-y-auto hide-scrollbar flex-1 min-h-0">
+					<div id="toc" class="transition-swup-fade">
+						<TOC headings={headings} />
+					</div>
+				</div>
+			</div>
+		)}
+
+		{/* Back to top */}
+		<button id="rsb-back-to-top" class="rsb-btt card-base shrink-0 w-9 h-9 mx-auto flex items-center justify-center cursor-pointer transition active:scale-90 rounded-full" aria-label="Back to Top">
+			<span class="rsb-chevron"></span>
+		</button>
+
+	</div>
+</div>
+
+<style>
+	.rsb-btt {
+		opacity: 0;
+		transform: translateY(0.5rem);
+		pointer-events: none;
+		transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+	}
+	.rsb-btt.show {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+	.rsb-btt:hover {
+		background: var(--btn-plain-bg-hover);
+	}
+	.rsb-chevron {
+		display: block;
+		width: 8px;
+		height: 8px;
+		border-top: 2px solid var(--primary);
+		border-right: 2px solid var(--primary);
+		transform: rotate(-45deg);
+		margin-top: 3px;
+	}
+</style>
+
+<script>
+	function initRsbBackToTop() {
+		const btn = document.getElementById('rsb-back-to-top');
+		if (!btn) return;
+
+		btn.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+
+		function toggle() {
+			if (window.scrollY > 300) {
+				btn.classList.add('show');
+			} else {
+				btn.classList.remove('show');
+			}
+		}
+
+		window.addEventListener('scroll', toggle, { passive: true });
+		toggle();
+	}
+
+	initRsbBackToTop();
+	document.addEventListener('swup:content:replace', initRsbBackToTop);
+</script>

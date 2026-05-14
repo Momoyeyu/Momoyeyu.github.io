@@ -1,8 +1,8 @@
 ---
-title: Sequences
+title: Python 序列
 published: 2023-01-20
 description: ''
-tags: [Python, 数据结构, 序列]
+tags: [Python]
 category: Python 入门
 episode: 4
 draft: false

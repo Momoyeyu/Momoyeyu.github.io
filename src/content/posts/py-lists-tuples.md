@@ -1,8 +1,8 @@
 ---
-title: Lists and Tuples
+title: Python 列表与元组
 published: 2023-01-17
 description: ''
-tags: [Python, 数据结构, 序列]
+tags: [Python]
 category: Python 入门
 episode: 2
 draft: false

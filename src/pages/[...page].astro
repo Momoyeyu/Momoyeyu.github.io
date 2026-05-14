@@ -8,16 +8,20 @@ import { getSortedPosts } from "../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
-	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+	const pinned = allBlogPosts.filter((p) => p.data.pinned);
+	const unpinned = allBlogPosts.filter((p) => !p.data.pinned);
+	return paginate(unpinned, { pageSize: PAGE_SIZE }).map((page) => ({
+		...page,
+		props: { ...page.props, pinned },
+	}));
 }) satisfies GetStaticPaths;
-// https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
-const { page } = Astro.props;
+const { page, pinned } = Astro.props;
 
 const len = page.data.length;
 ---
 
 <MainGridLayout>
-    <PostPage page={page}></PostPage>
+    <PostPage page={page} pinnedPosts={page.currentPage === 1 ? pinned : []}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>

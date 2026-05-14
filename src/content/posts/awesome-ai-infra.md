@@ -2,7 +2,7 @@
 title: Awesome AI Infra
 published: 2026-05-09
 description: ''
-tags: [学习资源, LLM, CUDA]
+tags: [AI Infra, LLM, CUDA]
 category: AI Infra
 episode: 2
 draft: false

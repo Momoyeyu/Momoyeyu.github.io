@@ -23,6 +23,7 @@ import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
+import { remarkMermaid } from "./src/plugins/remark-mermaid.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,7 +39,7 @@ export default defineConfig({
 			animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
 			// the default value `transition-` cause transition delay
 			// when the Tailwind class `transition-all` is used
-			containers: ["main", "#toc"],
+			containers: ["main", "#right-sidebar", "#sidebar-sticky"],
 			smoothScrolling: true,
 			cache: true,
 			preload: true,
@@ -104,6 +105,7 @@ export default defineConfig({
 	],
 	markdown: {
 		remarkPlugins: [
+			remarkMermaid,
 			remarkMath,
 			remarkReadingTime,
 			remarkExcerpt,

@@ -8,7 +8,7 @@ export const zh_CN: Translation = {
 	[Key.search]: "搜索",
 
 	[Key.tags]: "标签",
-	[Key.categories]: "分类",
+	[Key.categories]: "合集",
 	[Key.recentPosts]: "最新文章",
 	[Key.pinnedPosts]: "置顶",
 	[Key.latestPosts]: "最新文章",
@@ -16,7 +16,7 @@ export const zh_CN: Translation = {
 	[Key.comments]: "评论",
 
 	[Key.untitled]: "无标题",
-	[Key.uncategorized]: "未分类",
+	[Key.uncategorized]: "未归类",
 	[Key.noTags]: "无标签",
 
 	[Key.wordCount]: "字",

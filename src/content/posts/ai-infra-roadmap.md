@@ -2,7 +2,7 @@
 title: AI Infra Roadmap
 published: 2026-05-09
 description: ''
-tags: [LLM, CUDA]
+tags: [AI Infra, LLM, CUDA]
 category: AI Infra
 episode: 1
 draft: false

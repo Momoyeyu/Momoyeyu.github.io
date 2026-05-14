@@ -1,10 +1,10 @@
 ---
-title: Smart Pointer
+title: C++ 智能指针与 RAII
 published: 2023-04-21
 description: ''
-tags: [C++, 内存管理]
-category: C++ 入门
-episode: 4
+tags: [C++, 内存]
+category: C++ 进阶
+episode: 1
 draft: false
 image: '/img/cover2.jpg'
 lang: 'zh_CN'

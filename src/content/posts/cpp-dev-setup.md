@@ -1,6 +1,6 @@
 ---
-title: C++ 开发环境配置（macOS）
-published: 2026-05-12
+title: C++ 开发环境配置
+published: 2023-01-15
 description: ''
 tags: [C++, macOS, 工具链]
 category: C++ 入门

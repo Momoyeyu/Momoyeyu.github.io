@@ -1,22 +1,207 @@
 ---
-import type { MarkdownHeading } from "astro";
+import { getSortedPosts } from "@utils/content-utils";
+import { getPostUrlBySlug } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
 import Categories from "./Categories.astro";
 import Profile from "./Profile.astro";
 import Tag from "./Tags.astro";
 
 interface Props {
 	class?: string;
-	headings?: MarkdownHeading[];
+	category?: string;
+	currentSlug?: string;
 }
 
+const { category, currentSlug } = Astro.props;
 const className = Astro.props.class;
+
+const isPostPage = !!category;
+
+let seriesPosts: { title: string; url: string; slug: string; position: number }[] = [];
+
+if (category) {
+	const allPosts = await getSortedPosts();
+	const filtered = allPosts
+		.filter((p) => p.data.category === category && typeof p.data.episode === "number")
+		.slice()
+		.sort((a, b) => (a.data.episode as number) - (b.data.episode as number));
+
+	seriesPosts = filtered.map((p, i) => ({
+		title: p.data.title,
+		url: getPostUrlBySlug(p.slug),
+		slug: p.slug,
+		position: i + 1,
+	}));
+}
+
+const WINDOW = 7;
+const needsWindow = seriesPosts.length > WINDOW;
+const currentIdx = seriesPosts.findIndex((p) => p.slug === currentSlug);
+
+let winStart = 0;
+let winEnd = seriesPosts.length;
+if (needsWindow) {
+	winStart = Math.max(0, currentIdx - 3);
+	winEnd = winStart + WINDOW;
+	if (winEnd > seriesPosts.length) {
+		winEnd = seriesPosts.length;
+		winStart = Math.max(0, winEnd - WINDOW);
+	}
+}
+const visiblePosts = seriesPosts.slice(winStart, winEnd);
+const hasAbove = winStart > 0;
+const hasBelow = winEnd < seriesPosts.length;
 ---
 <div id="sidebar" class:list={[className, "w-full"]}>
     <div class="flex flex-col w-full gap-4 mb-4">
         <Profile></Profile>
     </div>
-    <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
-        <Categories class="onload-animation" style="animation-delay: 150ms"></Categories>
-        <Tag class="onload-animation" style="animation-delay: 200ms"></Tag>
+    <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 sticky top-4">
+        {isPostPage && seriesPosts.length > 1 ? (
+            <series-widget class="card-base pb-4 onload-animation" style="animation-delay: 150ms" data-needs-window={String(needsWindow)}>
+                <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+                    before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+                    before:absolute before:left-[-16px] before:top-[5.5px]">{`合集 · ${category}`}</div>
+                <div class="px-4">
+                    {/* Collapsed indicator: N items above */}
+                    {hasAbove && (
+                        <button class="series-expand-btn w-full flex items-center justify-center gap-1 py-1 text-xs text-30 hover:text-50 transition rounded-lg hover:bg-[var(--btn-plain-bg-hover)]">
+                            <span class="series-above-count">{winStart}</span><span> 篇在上方 ···</span>
+                        </button>
+                    )}
+
+                    {/* Windowed items */}
+                    <div class="series-window">
+                        {visiblePosts.map((p) => (
+                            <a
+                                href={p.url}
+                                class:list={[
+                                    "sidebar-series-item group flex items-center gap-2 px-2 py-1.5 rounded-lg transition text-sm",
+                                    { active: p.slug === currentSlug },
+                                ]}
+                            >
+                                <span class:list={[
+                                    "shrink-0 w-6 h-6 rounded-md text-xs font-bold flex items-center justify-center transition",
+                                    p.slug === currentSlug
+                                        ? "bg-[var(--primary)] text-white"
+                                        : "bg-black/5 dark:bg-white/10 text-black/40 dark:text-white/40",
+                                ]}>
+                                    {p.position}
+                                </span>
+                                <span class:list={[
+                                    "truncate transition",
+                                    p.slug === currentSlug
+                                        ? "text-[var(--primary)] font-semibold"
+                                        : "text-50 group-hover:text-75",
+                                ]}>
+                                    {p.title}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* Collapsed indicator: N items below */}
+                    {hasBelow && (
+                        <button class="series-expand-btn w-full flex items-center justify-center gap-1 py-1 text-xs text-30 hover:text-50 transition rounded-lg hover:bg-[var(--btn-plain-bg-hover)]">
+                            <span class="series-below-count">{seriesPosts.length - winEnd}</span><span> 篇在下方 ···</span>
+                        </button>
+                    )}
+
+                    {/* Full list (hidden, shown on expand) */}
+                    {needsWindow && (
+                        <div class="series-full hidden">
+                            {seriesPosts.map((p) => (
+                                <a
+                                    href={p.url}
+                                    class:list={[
+                                        "sidebar-series-item group flex items-center gap-2 px-2 py-1.5 rounded-lg transition text-sm",
+                                        { active: p.slug === currentSlug },
+                                    ]}
+                                >
+                                    <span class:list={[
+                                        "shrink-0 w-6 h-6 rounded-md text-xs font-bold flex items-center justify-center transition",
+                                        p.slug === currentSlug
+                                            ? "bg-[var(--primary)] text-white"
+                                            : "bg-black/5 dark:bg-white/10 text-black/40 dark:text-white/40",
+                                    ]}>
+                                        {p.position}
+                                    </span>
+                                    <span class:list={[
+                                        "truncate transition",
+                                        p.slug === currentSlug
+                                            ? "text-[var(--primary)] font-semibold"
+                                            : "text-50 group-hover:text-75",
+                                    ]}>
+                                        {p.title}
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Collapse button (hidden, shown after expand) */}
+                    {needsWindow && (
+                        <button class="series-collapse-btn hidden w-full h-9">
+                            <div class="btn-plain rounded-lg w-full h-full flex items-center justify-center">
+                                <div class="text-[var(--primary)] flex items-center justify-center gap-2 text-sm">
+                                    <Icon name="material-symbols:expand-less-rounded" class="text-[1.25rem]" /> 收起
+                                </div>
+                            </div>
+                        </button>
+                    )}
+                </div>
+            </series-widget>
+        ) : (
+            <>
+                <Categories class="onload-animation" style="animation-delay: 150ms"></Categories>
+                <Tag class="onload-animation" style="animation-delay: 200ms"></Tag>
+            </>
+        )}
     </div>
 </div>
+
+<style>
+    .sidebar-series-item:hover {
+        background: var(--btn-plain-bg-hover, rgba(0, 0, 0, 0.04));
+    }
+    .sidebar-series-item.active {
+        background: color-mix(in oklch, var(--primary) 8%, transparent);
+    }
+</style>
+
+<script>
+    class SeriesWidget extends HTMLElement {
+        constructor() {
+            super();
+            if (this.dataset.needsWindow !== "true") return;
+
+            const win = this.querySelector('.series-window');
+            const full = this.querySelector('.series-full');
+            const expandBtns = this.querySelectorAll('.series-expand-btn');
+            const collapseBtn = this.querySelector('.series-collapse-btn');
+
+            const expand = () => {
+                win?.classList.add('hidden');
+                expandBtns.forEach(b => b.classList.add('hidden'));
+                full?.classList.remove('hidden');
+                collapseBtn?.classList.remove('hidden');
+            };
+
+            const collapse = () => {
+                win?.classList.remove('hidden');
+                expandBtns.forEach(b => b.classList.remove('hidden'));
+                full?.classList.add('hidden');
+                collapseBtn?.classList.add('hidden');
+            };
+
+            expandBtns.forEach(b => b.addEventListener('click', expand));
+            collapseBtn?.addEventListener('click', collapse);
+        }
+    }
+
+    if (!customElements.get("series-widget")) {
+        customElements.define("series-widget", SeriesWidget);
+    }
+</script>
