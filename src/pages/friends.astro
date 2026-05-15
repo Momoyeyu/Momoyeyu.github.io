@@ -20,16 +20,40 @@ const groups: FriendGroup[] = [
 		desc: "常读的技术博客与朋友们",
 		links: [
 			{
-				name: "DLog",
+				name: "Weifei Jin",
+				url: "https://weifeijin.github.io/",
+				avatar: "https://weifeijin.github.io/images/profile.png",
+				descr: "One of my best friends",
+			},
+			{
+				name: "杜子源's Blog",
 				url: "https://dlog.com.cn/",
-				avatar: "https://dlog.com.cn/favicon/favicon.ico",
-				descr: "都是风景，幸会！",
+				avatar: "https://q1.qlogo.cn/g?b=qq&nk=1416642324&s=640",
+				descr: "都是风景，幸会",
+			},
+			{
+				name: "LinJHS个人小站",
+				url: "https://linjhs.com",
+				avatar: "https://linjhs.com/upload/logo.webp",
+				descr: "分享网络安全技术、资讯、生活",
 			},
 			{
 				name: "钰椿",
 				url: "https://blog.silencieux.xyz/",
 				avatar: "https://blog.silencieux.xyz/images/%E6%B0%B4%E6%B0%B4.jpg",
 				descr: "惟大英雄能本色，是真名士自风流",
+			},
+		],
+	},
+	{
+		title: "社区",
+		desc: "博客社区与友链接力",
+		links: [
+			{
+				name: "开往",
+				url: "https://www.travellings.cn/go.html",
+				avatar: "https://www.travellings.cn/assets/logo.gif",
+				descr: "开往-友链接力",
 			},
 		],
 	},
@@ -46,7 +70,7 @@ const groups: FriendGroup[] = [
 			{
 				name: "Fuwari",
 				url: "https://github.com/saicaca/fuwari",
-				avatar: "https://avatars.githubusercontent.com/u/46560121",
+				avatar: "https://avatars.githubusercontent.com/u/53662526",
 				descr: "A static blog template built with Astro",
 			},
 		],
@@ -92,13 +116,140 @@ const groups: FriendGroup[] = [
 			</div>
 		))}
 
-		<div class="mt-8 pt-6 border-t border-dashed border-[var(--line-divider)]">
-			<div class="text-sm text-30">
-				如需交换友链，请在
-				<a href="https://github.com/momoyeyu/momoyeyu.github.io/issues" target="_blank" rel="noopener" class="text-[var(--primary)] hover:underline">
-					GitHub Issues
-				</a>
-				中留下你的站点信息。
+	</div>
+
+	<div class="card-base p-6 md:p-8 mb-4">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+			<!-- Left: Application steps + requirements -->
+			<div class="rounded-2xl border border-[var(--line-divider)] overflow-hidden flex flex-col">
+				<div class="p-5 sm:p-6 flex flex-col flex-1">
+					<h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-5 flex items-center gap-2">
+						<span class="w-7 h-7 rounded-lg bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)] text-sm">
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+						</span>
+						申请友链
+					</h3>
+					<div class="space-y-0">
+						<div class="flex gap-3.5">
+							<div class="flex flex-col items-center">
+								<div class="w-7 h-7 rounded-full bg-[var(--primary)] text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+								<div class="w-0.5 flex-1 bg-[var(--line-divider)] my-1.5"></div>
+							</div>
+							<div class="pb-4">
+								<p class="font-semibold text-sm text-neutral-900 dark:text-neutral-100 mb-1">添加本站友链</p>
+								<p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">复制右侧本站信息，添加到你的友链页面</p>
+							</div>
+						</div>
+						<div class="flex gap-3.5">
+							<div class="flex flex-col items-center">
+								<div class="w-7 h-7 rounded-full bg-[var(--primary)] text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
+								<div class="w-0.5 flex-1 bg-[var(--line-divider)] my-1.5"></div>
+							</div>
+							<div class="pb-4">
+								<p class="font-semibold text-sm text-neutral-900 dark:text-neutral-100 mb-1">提交申请</p>
+								<p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+									在 <a href="https://github.com/momoyeyu/momoyeyu.github.io/issues/new?template=friend-link.yml&title=%5B%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7%5D" target="_blank" rel="noopener" class="text-[var(--primary)] hover:underline">GitHub Issues</a> 中填写你的站点信息
+								</p>
+							</div>
+						</div>
+						<div class="flex gap-3.5">
+							<div class="flex flex-col items-center">
+								<div class="w-7 h-7 rounded-full bg-[var(--primary)] text-white text-xs font-bold flex items-center justify-center shrink-0">3</div>
+							</div>
+							<div>
+								<p class="font-semibold text-sm text-neutral-900 dark:text-neutral-100 mb-1">等待审核</p>
+								<p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">确认无误后会尽快添加你的友链</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Requirements -->
+					<div class="mt-auto pt-5 border-t border-dashed border-[var(--line-divider)]">
+						<h4 class="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3 flex items-center gap-1.5">
+							<svg class="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+							申请条件
+						</h4>
+						<div class="space-y-2.5 text-sm text-neutral-600 dark:text-neutral-400">
+							<div class="flex items-baseline gap-2.5">
+								<span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shrink-0 translate-y-[-1px]"></span>
+								<span>请先将本站添加到你的友链页面</span>
+							</div>
+							<div class="flex items-baseline gap-2.5">
+								<span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shrink-0 translate-y-[-1px]"></span>
+								<span>站点需支持 HTTPS 访问</span>
+							</div>
+							<div class="flex items-baseline gap-2.5">
+								<span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shrink-0 translate-y-[-1px]"></span>
+								<span>内容积极合法，无违规信息</span>
+							</div>
+							<div class="flex items-baseline gap-2.5">
+								<span class="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shrink-0 translate-y-[-1px]"></span>
+								<span>长期不可访问或违规的友链将被移除</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right: Site info card -->
+			<div class="rounded-2xl border border-[var(--line-divider)] overflow-hidden flex flex-col">
+				<div class="p-5 sm:p-6 flex flex-col flex-1">
+					<!-- Avatar + identity block -->
+					<div class="flex flex-col items-center text-center mb-6">
+						<div class="mb-4">
+							<div class="w-24 h-24 rounded-full overflow-hidden ring-2 ring-black/5 dark:ring-white/10 shadow-lg">
+								<img src="/avatar.jpg" alt="夜羽的小作坊" class="w-full h-full object-cover" />
+							</div>
+						</div>
+						<h3 class="text-xl font-bold text-neutral-900 dark:text-neutral-100">夜羽的小作坊</h3>
+						<p class="text-sm text-[var(--primary)] font-medium mt-1 tracking-wide">Code Is Elegant</p>
+						<p class="text-xs text-neutral-400 dark:text-neutral-500 mt-0.5">写优雅的代码</p>
+					</div>
+
+					<!-- Copyable fields -->
+					<div class="space-y-2.5 flex-1">
+						<div class="flex items-center justify-between gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-2">
+							<div class="min-w-0">
+								<p class="text-[0.65rem] text-neutral-400 dark:text-neutral-500 mb-0.5">站点名称</p>
+								<p class="text-xs font-medium text-neutral-900 dark:text-neutral-100 truncate">夜羽的小作坊</p>
+							</div>
+							<button onclick="navigator.clipboard.writeText('夜羽的小作坊');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)" class="shrink-0 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 hover:opacity-80 transition-opacity cursor-pointer">
+								<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+								<svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+							</button>
+						</div>
+						<div class="flex items-center justify-between gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-2">
+							<div class="min-w-0">
+								<p class="text-[0.65rem] text-neutral-400 dark:text-neutral-500 mb-0.5">站点描述</p>
+								<p class="text-xs font-medium text-neutral-900 dark:text-neutral-100 truncate">Code Is Elegant</p>
+							</div>
+							<button onclick="navigator.clipboard.writeText('Code Is Elegant');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)" class="shrink-0 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 hover:opacity-80 transition-opacity cursor-pointer">
+								<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+								<svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+							</button>
+						</div>
+						<div class="flex items-center justify-between gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-2">
+							<div class="min-w-0">
+								<p class="text-[0.65rem] text-neutral-400 dark:text-neutral-500 mb-0.5">站点链接</p>
+								<p class="text-xs font-medium text-neutral-900 dark:text-neutral-100 truncate">https://momoyeyu.github.io</p>
+							</div>
+							<button onclick="navigator.clipboard.writeText('https://momoyeyu.github.io');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)" class="shrink-0 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 hover:opacity-80 transition-opacity cursor-pointer">
+								<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+								<svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+							</button>
+						</div>
+						<div class="flex items-center justify-between gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-2">
+							<div class="min-w-0">
+								<p class="text-[0.65rem] text-neutral-400 dark:text-neutral-500 mb-0.5">头像链接</p>
+								<p class="text-xs font-medium text-neutral-900 dark:text-neutral-100 truncate">https://momoyeyu.github.io/avatar.jpg</p>
+							</div>
+							<button onclick="navigator.clipboard.writeText('https://momoyeyu.github.io/avatar.jpg');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)" class="shrink-0 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 hover:opacity-80 transition-opacity cursor-pointer">
+								<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+								<svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

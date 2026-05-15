@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && mv dist/sitemap-index.xml dist/sitemap.xml && pagefind --site dist",
     "preview": "astro preview",
     "new-post": "node scripts/new-post.js"
   },

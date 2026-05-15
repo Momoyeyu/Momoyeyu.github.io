@@ -1,20 +1,22 @@
 ---
 title: AI Infra Roadmap
 published: 2026-05-09
-description: ''
+description: 'AI Infra 自学路线图：从工程基础到 GPU 算子、推理引擎与分布式训练，共六个阶段。'
 tags: [AI Infra, LLM, CUDA]
 category: AI Infra
 episode: 1
 draft: false
-image: '/img/webp2.webp'
+image: '/img/posts/ai-infra-roadmap/cover.webp'
 lang: 'zh_CN'
 ---
 
-最近开始转方向看 AI Infra，这块东西范围挺大、术语也多，先画一张全局地图，再沿路线走一遍。
+承接 [初识 AI Infra](/posts/ai-infra-intro/) 里的方向判断，下面是在 Claude 的帮助下、根据现有资料整理的一套学习路线，作为接下来研究生生涯的粗粒度计划。
 
-![AI Infra Roadmap 全局图](/img/ai-infra-roadmap-diagram.png)
+![AI Infra Roadmap 全局图](/img/posts/ai-infra-roadmap/diagram.png)
 
 整条路线大约 800 小时，分六个学习阶段，阶段 6 的项目实践从阶段 3 起就并行推进。
+
+> 这条路线是按知识依赖排出来的理想顺序，并不要求线性学完。对于有一定基础的科班同学来说，直接上项目、用项目反向驱动自己补技术，往往比按部就班学完前置更快。
 
 ## 阶段 0：工程基础（约 80h）
 
@@ -36,7 +38,7 @@ lang: 'zh_CN'
 
 ## 阶段 2：推理引擎——从用户侧到源码侧（约 150h）
 
-**推理（Inference）** 是模型上线之后的事，目标是延迟低、吞吐高、显存省。优化点非常密集——KV cache、speculative decoding、continuous batching、量化，这些都是推理框架在卷的方向。代表项目：[vLLM](https://github.com/vllm-project/vllm-omni)、[SGLang](https://github.com/sgl-project/sglang)。
+**推理（Inference）** 是模型上线之后的事，目标是延迟低、吞吐高、显存省。优化点非常密集——KV cache、speculative decoding、continuous batching、量化，这些都是推理框架在卷的方向。代表项目：[vLLM](https://github.com/vllm-project/vllm)、[SGLang](https://github.com/sgl-project/sglang)。
 
 这一阶段的目标：能讲清楚 vLLM 为什么比 HF generate 快。
 

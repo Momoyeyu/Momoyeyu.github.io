@@ -38,7 +38,8 @@ function assignSeriesMetadata(sorted: CollectionEntry<"posts">[]) {
 			);
 		const total = arr.length;
 		for (let i = 0; i < total; i++) {
-			arr[i].data.seriesPosition = i + 1;
+			// EP is 0-indexed (programmer-style): first episode is EP.0.
+			arr[i].data.seriesPosition = i;
 			arr[i].data.seriesTotal = total;
 			if (i > 0) {
 				arr[i].data.seriesPrevSlug = arr[i - 1].slug;

@@ -1,16 +1,16 @@
 ---
 title: Awesome AI Infra
 published: 2026-05-09
-description: ''
+description: '搜集的 AI Infra 相关 GitHub 资源，持续更新中。'
 tags: [AI Infra, LLM, CUDA]
 category: AI Infra
 episode: 2
 draft: false
-image: '/img/webp3.webp'
+image: '/img/posts/awesome-ai-infra/cover.webp'
 lang: 'zh_CN'
 ---
 
-整理一份自己学 AI Infra 时翻过、觉得有用的 GitHub 资源，按主题分类，不求全。配上这篇博文的 [AI Infra Roadmap](/posts/ai-infra-roadmap/) 来看会更顺。
+搜集的一些 AI Infra 相关 GitHub 资源，按主题分类。不少是从[子源学长的 Awesome Infra](https://dlog.com.cn/posts/awesomeinfra/awesome/) 那里借鉴的，也有一些自己找的，不一定每个都看过，持续更新中。配上这篇博文的 [AI Infra Roadmap](/posts/ai-infra-roadmap/) 来看会更顺。
 
 ## 体系教程
 

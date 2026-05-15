@@ -101,7 +101,13 @@ export default defineConfig({
 			}
 		}),
         svelte(),
-		sitemap(),
+		sitemap({
+			filter: (page) => !page.includes("/link"),
+			serialize(item) {
+				item.lastmod = new Date();
+				return item;
+			},
+		}),
 	],
 	markdown: {
 		remarkPlugins: [

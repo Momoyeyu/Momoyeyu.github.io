@@ -5,6 +5,7 @@ import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
+import { profileConfig, siteConfig } from "../config";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
@@ -18,10 +19,24 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page, pinned } = Astro.props;
 
+const homeJsonLd = page.currentPage === 1 ? {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: siteConfig.title,
+	description: siteConfig.subtitle,
+	url: Astro.site,
+	author: {
+		"@type": "Person",
+		name: profileConfig.name,
+	},
+	inLanguage: siteConfig.lang.replace("_", "-"),
+} : null;
+
 const len = page.data.length;
 ---
 
 <MainGridLayout>
+    {homeJsonLd && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(homeJsonLd)}></script>}
     <PostPage page={page} pinnedPosts={page.currentPage === 1 ? pinned : []}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>

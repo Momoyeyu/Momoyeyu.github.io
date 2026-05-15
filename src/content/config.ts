@@ -23,7 +23,7 @@ const postsCollection = defineCollection({
 		seriesPrevSlug: z.string().default(""),
 		seriesNextTitle: z.string().default(""),
 		seriesNextSlug: z.string().default(""),
-		seriesPosition: z.number().default(0),
+		seriesPosition: z.number().default(-1),
 		seriesTotal: z.number().default(0),
 	}),
 });

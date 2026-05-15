@@ -1,7 +1,7 @@
 ---
 title: Python 列表与元组
 published: 2023-01-17
-description: ''
+description: 'Python 列表与元组的创建、访问、切片、排序及常用操作方法。'
 tags: [Python]
 category: Python 入门
 episode: 2

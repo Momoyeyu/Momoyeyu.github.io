@@ -39,10 +39,11 @@ const jsonLd = {
 		url: Astro.site,
 	},
 	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	...(entry.data.updated && { dateModified: formatDateToYYYYMMDD(entry.data.updated) }),
+	...(entry.data.image && { image: new URL(entry.data.image, Astro.site).href }),
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
-	// TODO include cover image here
 };
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings} category={entry.data.category} currentSlug={entry.slug}>

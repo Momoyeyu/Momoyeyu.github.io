@@ -1,7 +1,7 @@
 ---
 title: C++ 开发环境配置
 published: 2023-01-15
-description: ''
+description: '在 macOS 上配置 C++ 开发环境：Xcode CLI Tools、Homebrew、CMake 与 CLion 工具链。'
 tags: [C++, macOS, 工具链]
 category: C++ 入门
 episode: 1

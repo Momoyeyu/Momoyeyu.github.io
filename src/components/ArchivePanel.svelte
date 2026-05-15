@@ -45,6 +45,7 @@ const SORT_META: Record<SortMode, { label: string; hint: string }> = {
 
 let groups: Group[] = [];
 let filteredPosts: Post[] = [];
+let seriesPosts: Post[] = [];
 let canUseSeries = false;
 let sortMode: SortMode = "date-desc";
 let mounted = false;
@@ -63,7 +64,7 @@ function formatTag(tagList: string[]) {
 function rebuildGroups() {
 	if (sortMode === "episode-desc" || sortMode === "episode-asc") {
 		const direction = sortMode === "episode-desc" ? -1 : 1;
-		const seriesPosts = [...filteredPosts].sort(
+		const ordered = [...seriesPosts].sort(
 			(a, b) =>
 				direction * ((a.data.episode ?? 0) - (b.data.episode ?? 0)),
 		);
@@ -72,7 +73,7 @@ function rebuildGroups() {
 				year: 0,
 				isSeries: true,
 				label: categories[0] ?? "",
-				posts: seriesPosts,
+				posts: ordered,
 			},
 		];
 		return;
@@ -158,13 +159,16 @@ onMount(() => {
 	}
 
 	filteredPosts = pool;
+	seriesPosts = filteredPosts.filter(
+		(p) => typeof p.data.episode === "number",
+	);
 
 	const singleCategory =
 		categories.length === 1 && tags.length === 0 && !uncategorized;
-	const allHaveEpisode =
-		filteredPosts.length > 0 &&
-		filteredPosts.every((p) => typeof p.data.episode === "number");
-	canUseSeries = singleCategory && allHaveEpisode;
+	// Show EP sort whenever the category has a series of >=2 episodes, even if
+	// some standalone posts in the same category don't have an episode field.
+	// Series mode shows only the episode posts; date mode shows everything.
+	canUseSeries = singleCategory && seriesPosts.length >= 2;
 
 	sortMode = canUseSeries ? "episode-desc" : "date-desc";
 	rebuildGroups();
@@ -281,7 +285,7 @@ onMount(() => {
                     <div class="flex flex-row justify-start items-center h-full">
                         <!-- date or episode -->
                         <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-                            {#if group.isSeries && typeof post.data.seriesPosition === "number" && post.data.seriesPosition > 0}
+                            {#if group.isSeries && typeof post.data.seriesPosition === "number" && post.data.seriesPosition >= 0}
                                 EP.{post.data.seriesPosition}
                             {:else}
                                 {formatDate(post.data.published)}
